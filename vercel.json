@@ -1,0 +1,1 @@
+{"headers":[{"headers":[{"key":"Service-Worker-Allowed","value":"/"}],"source":"/mockServiceWorker.js"}],"rewrites":[{"destination":"/index.html","source":"/(.*)"}]}
