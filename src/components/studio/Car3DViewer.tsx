@@ -2,7 +2,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls, Html, useProgress, MeshReflectorMaterial } from "@react-three/drei";
 import * as THREE from "three";
-import ProceduralCar from "./ProceduralCar";
+import ProceduralCarFamily, { STYLE_SPHERE, type BodyStyle } from "./ProceduralCarFamily";
 
 const VIEW_DIRS: Record<string, THREE.Vector3> = {
   "3/4 trước": new THREE.Vector3(1, 0.42, 1).normalize(),
@@ -11,8 +11,7 @@ const VIEW_DIRS: Record<string, THREE.Vector3> = {
   "Trên cao": new THREE.Vector3(0.25, 1.5, 0.25).normalize(),
 };
 
-/** Known bounding sphere of ProceduralCar (4.6 L x 1.15 H x 1.92 W) */
-const CAR_SPHERE = new THREE.Sphere(new THREE.Vector3(0, 0.55, 0), 2.6);
+/** Camera rig: presets framed on the per-style bounding sphere */
 
 function Loader() {
   const { progress } = useProgress();
@@ -28,18 +27,21 @@ function Loader() {
   );
 }
 
-/** Camera rig: presets framed on the known car sphere */
+/** Camera rig: presets framed on the per-style bounding sphere */
 function CameraRig({
   controlsRef,
+  bodyStyle,
   view,
   viewTick,
 }: {
   controlsRef: React.RefObject<React.ElementRef<typeof OrbitControls> | null>;
+  bodyStyle: BodyStyle;
   view: string;
   viewTick: number;
 }) {
   const { camera, size } = useThree();
   const fitted = useRef(false);
+  const sphere = STYLE_SPHERE[bodyStyle];
 
   const frame = (dirKey: string) => {
     const c = controlsRef.current;
@@ -47,10 +49,10 @@ function CameraRig({
     const dir = VIEW_DIRS[dirKey] ?? VIEW_DIRS["3/4 trước"];
     const vFov = THREE.MathUtils.degToRad((camera as THREE.PerspectiveCamera).fov);
     const hFov = 2 * Math.atan(Math.tan(vFov / 2) * (size.width / Math.max(1, size.height)));
-    const radius = CAR_SPHERE.radius;
+    const radius = sphere.radius;
     const dist = Math.max(radius / Math.sin(vFov / 2), radius / Math.sin(hFov / 2)) * 1.05;
-    camera.position.copy(CAR_SPHERE.center).addScaledVector(dir, dist);
-    c.target.copy(CAR_SPHERE.center);
+    camera.position.copy(sphere.center).addScaledVector(dir, dist);
+    c.target.copy(sphere.center);
     c.update();
   };
 
@@ -85,15 +87,24 @@ function CameraRig({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [viewTick]);
 
+  // refit when car model changes
+  useEffect(() => {
+    if (!fitted.current) return;
+    frame(view);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bodyStyle]);
+
   return null;
 }
 
 export default function Car3DViewer({
+  bodyStyle,
   paintHex,
   paintName,
   wheelId,
   wheelName,
 }: {
+  bodyStyle: BodyStyle;
   paintHex: string;
   paintName: string;
   wheelId: string;
@@ -154,10 +165,10 @@ export default function Car3DViewer({
         </mesh>
 
         <Suspense fallback={<Loader />}>
-          <ProceduralCar paintHex={paintHex} wheelId={wheelId} />
+          <ProceduralCarFamily bodyStyle={bodyStyle} paintHex={paintHex} wheelId={wheelId} />
         </Suspense>
 
-        <CameraRig controlsRef={controls} view={view} viewTick={viewTick} />
+        <CameraRig controlsRef={controls} bodyStyle={bodyStyle} view={view} viewTick={viewTick} />
 
         <OrbitControls
           ref={controls}
