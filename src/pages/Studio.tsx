@@ -130,6 +130,7 @@ export default function Studio() {
 
               {view3d ? (
                 <Car3DViewer
+                  bodyStyle={car.bodyStyle ?? "sedan"}
                   paintHex={paint.hex}
                   paintName={paint.name}
                   wheelId={s.wheelId}
