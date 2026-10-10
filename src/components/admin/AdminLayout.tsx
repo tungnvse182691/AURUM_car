@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
-import { LayoutDashboard, Car, CalendarCheck, ShoppingBag, Users, LogOut, Menu, X, ArrowLeft } from "lucide-react";
+import { LayoutDashboard, Car, CalendarCheck, ShoppingBag, Users, LogOut, Menu, X, ArrowLeft, type LucideIcon } from "lucide-react";
 import { useAuthStore } from "../../stores/useAuthStore";
 import RoleGuard from "../RoleGuard";
 import AurumLogo from "../brand/AurumLogo";
 import type { User } from "../../types";
 
-const MENU: { to: string; label: string; icon: React.ElementType; roles: User["role"][] }[] = [
+const MENU: { to: string; label: string; icon: LucideIcon; roles: User["role"][] }[] = [
   { to: "/admin", label: "Tổng quan", icon: LayoutDashboard, roles: ["admin", "staff"] },
   { to: "/admin/cars", label: "Kho xe", icon: Car, roles: ["admin"] },
   { to: "/admin/bookings", label: "Lịch lái thử", icon: CalendarCheck, roles: ["admin", "staff"] },
