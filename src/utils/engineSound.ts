@@ -1,25 +1,33 @@
 /**
  * AURUM Engine Synth — tổng hợp tiếng động cơ bằng Web Audio API, không cần file audio.
- * Mỗi loại máy có "tính cách" riêng: V8 gầm gừ, V10/V12 the thé, Điện là tiếng whine tương lai.
+ * Xe phổ thông: I4 êm, V6 đầy, Diesel gằn, Hybrid lặng + whine điện.
  */
 
-export type EngineCharacter = "v8" | "v10" | "v12" | "electric" | "other";
+export type EngineCharacter = "i4" | "v6" | "diesel" | "hybrid" | "electric" | "v8" | "v10" | "v12" | "other";
 
 export function engineCharacter(engine: string, fuel: string): EngineCharacter {
   if (fuel === "Điện") return "electric";
+  if (fuel === "Hybrid") return "hybrid";
+  if (fuel === "Dầu") return "diesel";
   const e = engine.toUpperCase();
   if (e.includes("V12")) return "v12";
   if (e.includes("V10")) return "v10";
   if (e.includes("V8")) return "v8";
+  if (e.includes("V6")) return "v6";
+  if (e.includes("I4") || e.includes("1.5L") || e.includes("2.0L") || e.includes("1.2L") || e.includes("1.0L")) return "i4";
   return "other";
 }
 
 const PRESETS: Record<EngineCharacter, { base: number; top: number; growl: number; bright: number }> = {
+  i4: { base: 72, top: 210, growl: 0.35, bright: 0.6 }, // 4-cyl phổ thông: cao, gọn, ít gầm
+  v6: { base: 58, top: 170, growl: 0.6, bright: 0.5 }, // V6: đầy đặn hơn I4
+  diesel: { base: 42, top: 110, growl: 1.0, bright: 0.25 }, // diesel: trầm, gằn, lạch cạch
+  hybrid: { base: 90, top: 260, growl: 0.15, bright: 0.75 }, // hybrid: êm + whine điện nhẹ
+  electric: { base: 300, top: 1200, growl: 0.05, bright: 1 },
   v8: { base: 48, top: 130, growl: 0.9, bright: 0.35 },
   v10: { base: 62, top: 190, growl: 0.6, bright: 0.55 },
   v12: { base: 70, top: 230, growl: 0.45, bright: 0.7 },
-  electric: { base: 300, top: 1200, growl: 0.05, bright: 1 },
-  other: { base: 55, top: 150, growl: 0.7, bright: 0.45 },
+  other: { base: 65, top: 180, growl: 0.5, bright: 0.5 },
 };
 
 let ctx: AudioContext | null = null;
