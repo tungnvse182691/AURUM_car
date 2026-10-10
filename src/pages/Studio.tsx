@@ -101,10 +101,17 @@ export default function Studio() {
           <div>
             <Reveal>
               {/* 2D / 3D toggle */}
-              <div className="mb-4 flex items-center justify-between">
-                <p className="font-condensed text-xs uppercase tracking-[0.3em] text-ash">
-                  {view3d ? "Xem 3D tương tác" : "Xem ảnh thực tế"}
-                </p>
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p className="font-condensed text-xs uppercase tracking-[0.3em] text-ash">
+                    {view3d ? "Trình diễn màu sơn 3D" : "Xem ảnh thực tế"}
+                  </p>
+                  {view3d && (
+                    <p className="mt-1 max-w-md text-[11px] leading-relaxed text-ash/60">
+                      Model concept minh họa — giúp bạn hình dung màu sơn dưới ánh sáng showroom 3D.
+                    </p>
+                  )}
+                </div>
                 <div className="flex border border-white/15">
                   <button
                     onClick={() => setView3d(false)}
