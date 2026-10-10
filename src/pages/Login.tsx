@@ -45,7 +45,7 @@ export default function Login() {
     <div className="grid min-h-screen bg-obsidian lg:grid-cols-2">
       {/* left: image */}
       <div className="grain relative hidden overflow-hidden lg:block">
-        <img src={IMG.aventadorDoors} alt="AURUM showroom" className="h-full w-full object-cover" />
+        <img src={IMG.sedanBlue} alt="AURUM showroom" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-obsidian/40 to-obsidian" />
         <div className="absolute inset-0 bg-obsidian/30" />
         <div className="absolute bottom-12 left-12 max-w-md">
