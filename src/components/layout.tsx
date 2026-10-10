@@ -53,7 +53,17 @@ export function Header() {
         }`}
       >
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-          <Link to="/" className="flex items-center gap-3" data-cursor="Trang chủ">
+          <Link
+            to="/"
+            className="flex items-center gap-3"
+            data-cursor="Trang chủ"
+            onClick={(e) => {
+              if (loc.pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+          >
             <AurumLogo variant="icon" glow={scrolled} className="h-11 w-11" />
             <span className="font-cinzel text-lg font-bold tracking-[0.32em] text-ivory" style={{ fontFamily: "'Cinzel', serif" }}>
               AURUM
@@ -105,6 +115,14 @@ export function Header() {
                       <Link to="/favorites" onClick={() => setUserOpen(false)} className="block px-5 py-3 text-sm text-ivory/80 hover:bg-white/5 hover:text-ivory">
                         Xe yêu thích
                       </Link>
+                      <Link to="/account" onClick={() => setUserOpen(false)} className="block px-5 py-3 text-sm text-ivory/80 hover:bg-white/5 hover:text-ivory">
+                        Tài khoản của tôi
+                      </Link>
+                      {(user.role === "admin" || user.role === "staff") && (
+                        <Link to="/admin" onClick={() => setUserOpen(false)} className="block px-5 py-3 text-sm text-gold hover:bg-white/5">
+                          Quản trị
+                        </Link>
+                      )}
                       <button
                         onClick={() => { logout(); setUserOpen(false); navigate("/"); }}
                         className="flex w-full items-center gap-2 px-5 py-3 text-left text-sm text-ivory/80 hover:bg-white/5 hover:text-ivory"
@@ -164,6 +182,7 @@ export function Header() {
 }
 
 export function Footer() {
+  const loc = useLocation();
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-coal">
       {/* mega typography CTA */}
@@ -186,10 +205,19 @@ export function Footer() {
 
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-4">
         <div>
-          <div className="flex items-center gap-3">
+          <Link
+            to="/"
+            className="flex items-center gap-3"
+            onClick={(e) => {
+              if (loc.pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+          >
             <AurumLogo variant="icon" className="h-10 w-10" />
             <span className="font-cinzel text-base font-bold tracking-[0.32em] text-ivory" style={{ fontFamily: "'Cinzel', serif" }}>AURUM</span>
-          </div>
+          </Link>
           <p className="mt-4 font-display text-lg italic text-ash" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             &ldquo;Driven by Gold.&rdquo;
           </p>
