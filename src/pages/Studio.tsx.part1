@@ -1,0 +1,60 @@
+=> {
+                          s.setCar(b.carId);
+                          s.setPaint(b.paintId);
+                          s.setWheel(b.wheelId);
+                          s.setInterior(b.interiorId);
+                          b.packageIds.forEach((pid) => {
+                            if (!useStudioStore.getState().packageIds.includes(pid)) useStudioStore.getState().togglePackage(pid);
+                          });
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
+                        className="flex-1 border border-white/15 py-2.5 font-condensed text-[11px] uppercase tracking-[0.18em] text-ivory/80 hover:border-gold hover:text-gold"
+                      >
+                        Tải lại
+                      </button>
+                      <button
+                        onClick={() => s.removeBuild(b.id)}
+                        className="border border-white/15 px-3.5 text-ash hover:border-red-800 hover:text-red-300"
+                        aria-label="Xóa thiết kế"
+                      >
+                        <Trash2 size={14} />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function Row({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-center justify-between gap-3">
+      <span className="truncate text-ash">{label}</span>
+      <span className="shrink-0 font-condensed text-ivory">{value}</span>
+    </div>
+  );
+}
+
+/** Decorative wheel SVG swatch */
+function WheelIcon({ seed }: { seed: string }) {
+  const spokes = 5 + (seed.charCodeAt(2) % 3) * 2;
+  return (
+    <svg width="52" height="52" viewBox="0 0 52 52" className="shrink-0">
+      <circle cx="26" cy="26" r="24" fill="none" stroke="#D4AF37" strokeWidth="2" opacity="0.7" />
+      <circle cx="26" cy="26" r="17" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="5" />
+      {Array.from({ length: spokes }).map((_, i) => {
+        const a = (i / spokes) * Math.PI * 2;
+        return (
+          <line key={i} x1="26" y1="26" x2={26 + Math.cos(a) * 22} y2={26 + Math.sin(a) * 22}
+            stroke="#D4AF37" strokeWidth="2.5" opacity="0.85" />
+        );
+      })}
+      <circle cx="26" cy="26" r="5" fill="#D4AF37" />
+    </svg>
+  );
+}
