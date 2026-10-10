@@ -4,6 +4,7 @@ import { X, ShieldCheck, CheckCircle2, Loader2 } from "lucide-react";
 import type { CarWithBrand } from "../types";
 import { formatVND } from "../mocks/db";
 import { api } from "../services/api";
+import { useAuthStore } from "../stores/useAuthStore";
 
 const AMOUNTS = [50_000_000, 100_000_000, 200_000_000, 500_000_000];
 
@@ -14,6 +15,7 @@ export default function DepositModal({ car, open, onClose }: { car: CarWithBrand
   const [state, setState] = useState<"form" | "busy" | "done" | "error">("form");
   const [errMsg, setErrMsg] = useState("");
   const [orderId, setOrderId] = useState("");
+  const user = useAuthStore((s) => s.user);
 
   useEffect(() => {
     if (!open) return;
@@ -25,7 +27,7 @@ export default function DepositModal({ car, open, onClose }: { car: CarWithBrand
   const submit = async () => {
     setState("busy");
     try {
-      const res = await api.createDeposit({ carId: car.id, amount, name: name.trim(), phone: phone.trim() });
+      const res = await api.createDeposit({ carId: car.id, amount, name: name.trim(), phone: phone.trim(), userId: user?.id });
       setOrderId(res.data.id);
       setState("done");
     } catch (e) {
