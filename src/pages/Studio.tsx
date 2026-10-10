@@ -104,11 +104,11 @@ export default function Studio() {
               <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p className="font-condensed text-xs uppercase tracking-[0.3em] text-ash">
-                    {view3d ? "Trình diễn màu sơn 3D" : "Xem ảnh thực tế"}
+                    {view3d ? "Concept 3D tương tác" : "Xem ảnh thực tế"}
                   </p>
                   {view3d && (
                     <p className="mt-1 max-w-md text-[11px] leading-relaxed text-ash/60">
-                      Model concept minh họa — giúp bạn hình dung màu sơn dưới ánh sáng showroom 3D.
+                      Concept 3D do AURUM dựng — xem màu sơn & mâm xe thay đổi trực tiếp.
                     </p>
                   )}
                 </div>
