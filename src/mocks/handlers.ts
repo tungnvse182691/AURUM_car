@@ -17,6 +17,33 @@ const publicUser = (u: User) => {
   return rest;
 };
 
+/** Server-side RBAC: read Bearer token, return user or null.
+ *  Sessions are in-memory; after a page reload the SW restarts with an empty
+ *  map, so recover the session from the userId embedded in the token. */
+function authUser(request: Request): User | null {
+  const token = request.headers.get("authorization")?.replace("Bearer ", "");
+  if (!token) return null;
+  const hit = sessions.get(token);
+  if (hit) return hit;
+  const m = token.match(/^aurum-(.+)-[a-z0-9]+$/);
+  if (m) {
+    const user = users.find((u) => u.id === m[1] && u.status === "active");
+    if (user) {
+      sessions.set(token, user);
+      return user;
+    }
+  }
+  return null;
+}
+
+function requireRole(request: Request, roles: User["role"][]) {
+  const user = authUser(request);
+  if (!user) return { error: HttpResponse.json({ error: "Chưa đăng nhập" }, { status: 401 }) };
+  if (!roles.includes(user.role))
+    return { error: HttpResponse.json({ error: "Không có quyền truy cập" }, { status: 403 }) };
+  return { user };
+}
+
 export const handlers = [
   // ── Catalog ──────────────────────────────────────────────
   http.get("/api/cars", async ({ request }) => {
@@ -143,5 +170,229 @@ export const handlers = [
     };
     orders.push(order);
     return HttpResponse.json({ data: order }, { status: 201 });
+  }),
+
+  // ── Register ─────────────────────────────────────────────
+  http.post("/api/auth/register", async ({ request }) => {
+    await LATENCY();
+    const { name, email, phone, password } = (await request.json()) as Record<string, string>;
+    if (!name?.trim() || !email?.trim() || !password || password.length < 6) {
+      return HttpResponse.json({ error: "Vui lòng điền đầy đủ, mật khẩu ≥ 6 ký tự" }, { status: 422 });
+    }
+    if (users.some((u) => u.email.toLowerCase() === email.toLowerCase().trim())) {
+      return HttpResponse.json({ error: "Email đã được đăng ký" }, { status: 409 });
+    }
+    const user: User = {
+      id: `u-${Date.now().toString(36)}`,
+      name: name.trim(),
+      email: email.trim(),
+      phone: phone?.trim() ?? "",
+      passwordHash: password,
+      role: "user",
+      status: "active",
+      createdAt: new Date().toISOString(),
+    };
+    users.push(user);
+    const token = `aurum-${user.id}-${Date.now().toString(36)}`;
+    sessions.set(token, user);
+    return HttpResponse.json({ data: { user: publicUser(user), token } }, { status: 201 });
+  }),
+
+  // ── Account: my bookings & orders ────────────────────────
+  http.get("/api/account/bookings", async ({ request }) => {
+    await LATENCY();
+    const { user, error } = requireRole(request, ["user", "staff", "admin"]);
+    if (error) return error;
+    const mine = testDrives.filter((t) => t.userId === user.id || t.phone === user.phone);
+    return HttpResponse.json({ data: mine });
+  }),
+
+  http.get("/api/account/orders", async ({ request }) => {
+    await LATENCY();
+    const { user, error } = requireRole(request, ["user", "staff", "admin"]);
+    if (error) return error;
+    const mine = orders.filter((o) => o.userId === user.id || o.phone === user.phone);
+    return HttpResponse.json({ data: mine });
+  }),
+
+  // ── Admin: stats ─────────────────────────────────────────
+  http.get("/api/admin/stats", async ({ request }) => {
+    await LATENCY();
+    const { error } = requireRole(request, ["admin", "staff"]);
+    if (error) return error;
+    const revenue = orders
+      .filter((o) => o.status === "confirmed")
+      .reduce((s, o) => s + Number(o.amount ?? 0), 0);
+    return HttpResponse.json({
+      data: {
+        totalCars: cars.length,
+        availableCars: cars.filter((c) => c.status === "available").length,
+        totalOrders: orders.length,
+        pendingOrders: orders.filter((o) => o.status === "pending").length,
+        totalBookings: testDrives.length,
+        pendingBookings: testDrives.filter((t) => t.status === "pending").length,
+        totalUsers: users.length,
+        revenue,
+      },
+    });
+  }),
+
+  // ── Admin: test-drives ───────────────────────────────────
+  http.get("/api/admin/test-drives", async ({ request }) => {
+    await LATENCY();
+    const { error } = requireRole(request, ["admin", "staff"]);
+    if (error) return error;
+    const enriched = testDrives.map((t) => ({
+      ...t,
+      car: (() => {
+        const c = cars.find((x) => x.id === t.carId);
+        return c ? { ...withBrand(c), images: [c.images[0]] } : null;
+      })(),
+    }));
+    return HttpResponse.json({ data: enriched });
+  }),
+
+  http.patch("/api/admin/test-drives/:id", async ({ request, params }) => {
+    await LATENCY();
+    const { error } = requireRole(request, ["admin", "staff"]);
+    if (error) return error;
+    const t = testDrives.find((x) => x.id === params.id);
+    if (!t) return HttpResponse.json({ error: "Không tìm thấy lịch hẹn" }, { status: 404 });
+    const { status } = (await request.json()) as { status?: string };
+    if (status && ["pending", "confirmed", "done", "cancelled"].includes(status)) t.status = status;
+    return HttpResponse.json({ data: t });
+  }),
+
+  // ── Admin: orders ────────────────────────────────────────
+  http.get("/api/admin/orders", async ({ request }) => {
+    await LATENCY();
+    const { error } = requireRole(request, ["admin", "staff"]);
+    if (error) return error;
+    const enriched = orders.map((o) => ({
+      ...o,
+      car: (() => {
+        const c = cars.find((x) => x.id === o.carId);
+        return c ? { ...withBrand(c), images: [c.images[0]] } : null;
+      })(),
+    }));
+    return HttpResponse.json({ data: enriched });
+  }),
+
+  http.patch("/api/admin/orders/:id", async ({ request, params }) => {
+    await LATENCY();
+    const { error } = requireRole(request, ["admin", "staff"]);
+    if (error) return error;
+    const o = orders.find((x) => x.id === params.id);
+    if (!o) return HttpResponse.json({ error: "Không tìm thấy đơn" }, { status: 404 });
+    const { status } = (await request.json()) as { status?: string };
+    if (status && ["pending", "confirmed", "done", "cancelled", "refunded"].includes(status)) o.status = status;
+    return HttpResponse.json({ data: o });
+  }),
+
+  // ── Admin: cars CRUD ─────────────────────────────────────
+  http.post("/api/admin/cars", async ({ request }) => {
+    await LATENCY();
+    const { error } = requireRole(request, ["admin"]);
+    if (error) return error;
+    const body = (await request.json()) as Record<string, unknown>;
+    if (!body.model || !body.brandId || !body.price) {
+      return HttpResponse.json({ error: "Thiếu thông tin xe (model, hãng, giá)" }, { status: 422 });
+    }
+    const id = `c-${Date.now().toString(36)}`;
+    const car = {
+      id,
+      slug: `${String(body.brandId)}-${String(body.model).toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${id}`,
+      brandId: String(body.brandId),
+      model: String(body.model),
+      trim: String(body.trim ?? ""),
+      year: Number(body.year ?? new Date().getFullYear()),
+      price: Number(body.price),
+      promoPrice: body.promoPrice ? Number(body.promoPrice) : undefined,
+      mileage: Number(body.mileage ?? 0),
+      vin: String(body.vin ?? `AURUM${Date.now().toString(36).toUpperCase()}`),
+      plate: String(body.plate ?? ""),
+      extColor: String(body.extColor ?? ""),
+      intColor: String(body.intColor ?? ""),
+      transmission: (body.transmission as string) ?? "AT",
+      fuel: String(body.fuel ?? "Xăng"),
+      engine: String(body.engine ?? ""),
+      powerHp: Number(body.powerHp ?? 0),
+      torqueNm: Number(body.torqueNm ?? 0),
+      drivetrain: String(body.drivetrain ?? "AWD"),
+      seats: Number(body.seats ?? 4),
+      doors: Number(body.doors ?? 4),
+      consumption: Number(body.consumption ?? 0),
+      description: String(body.description ?? ""),
+      features: Array.isArray(body.features) ? (body.features as string[]) : [],
+      images: Array.isArray(body.images) && (body.images as string[]).length ? (body.images as string[]) : [],
+      status: (body.status as string) ?? "available",
+      isNew: Boolean(body.isNew),
+      isFeatured: Boolean(body.isFeatured),
+      views: 0,
+      createdAt: new Date().toISOString(),
+    };
+    cars.push(car as (typeof cars)[number]);
+    return HttpResponse.json({ data: withBrand(car as (typeof cars)[number]) }, { status: 201 });
+  }),
+
+  http.patch("/api/admin/cars/:id", async ({ request, params }) => {
+    await LATENCY();
+    const { error } = requireRole(request, ["admin"]);
+    if (error) return error;
+    const car = cars.find((c) => c.id === params.id);
+    if (!car) return HttpResponse.json({ error: "Không tìm thấy xe" }, { status: 404 });
+    const body = (await request.json()) as Record<string, unknown>;
+    const allowed = ["model", "trim", "year", "price", "promoPrice", "mileage", "extColor", "intColor", "transmission", "fuel", "engine", "powerHp", "torqueNm", "drivetrain", "seats", "doors", "consumption", "description", "features", "images", "status", "isNew", "isFeatured", "brandId"];
+    for (const k of allowed) {
+      if (body[k] !== undefined) (car as unknown as Record<string, unknown>)[k] = body[k];
+    }
+    return HttpResponse.json({ data: withBrand(car) });
+  }),
+
+  http.delete("/api/admin/cars/:id", async ({ request, params }) => {
+    await LATENCY();
+    const { error } = requireRole(request, ["admin"]);
+    if (error) return error;
+    const idx = cars.findIndex((c) => c.id === params.id);
+    if (idx < 0) return HttpResponse.json({ error: "Không tìm thấy xe" }, { status: 404 });
+    const [removed] = cars.splice(idx, 1);
+    return HttpResponse.json({ data: { id: removed.id } });
+  }),
+
+  // ── Admin: users ─────────────────────────────────────────
+  http.get("/api/admin/users", async ({ request }) => {
+    await LATENCY();
+    const { error } = requireRole(request, ["admin"]);
+    if (error) return error;
+    return HttpResponse.json({
+      data: users.map((u) => ({
+        ...publicUser(u),
+        bookings: testDrives.filter((t) => t.userId === u.id || t.phone === u.phone).length,
+        orders: orders.filter((o) => o.userId === u.id || o.phone === u.phone).length,
+      })),
+    });
+  }),
+
+  http.patch("/api/admin/users/:id", async ({ request, params }) => {
+    await LATENCY();
+    const { user: me, error } = requireRole(request, ["admin"]);
+    if (error) return error;
+    const u = users.find((x) => x.id === params.id);
+    if (!u) return HttpResponse.json({ error: "Không tìm thấy user" }, { status: 404 });
+    const body = (await request.json()) as { role?: string; status?: string };
+    if (body.role && ["user", "staff", "admin"].includes(body.role)) {
+      // protect last admin
+      if (u.role === "admin" && body.role !== "admin" && users.filter((x) => x.role === "admin" && x.status === "active").length <= 1) {
+        return HttpResponse.json({ error: "Không thể hạ quyền admin cuối cùng" }, { status: 422 });
+      }
+      u.role = body.role as User["role"];
+    }
+    if (body.status && ["active", "locked"].includes(body.status)) {
+      if (u.id === me.id && body.status === "locked") {
+        return HttpResponse.json({ error: "Không thể khóa chính mình" }, { status: 422 });
+      }
+      u.status = body.status as User["status"];
+    }
+    return HttpResponse.json({ data: publicUser(u) });
   }),
 ];
