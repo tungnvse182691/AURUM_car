@@ -140,7 +140,7 @@ function Configurator() {
         <div className="mt-14 grid items-center gap-10 lg:grid-cols-[1fr_360px]">
           <Reveal className="relative overflow-hidden border border-white/10">
             <div className="relative aspect-[16/9]">
-              <img src={IMG.sedanWhite} alt="Sedan trắng AURUM" className="h-full w-full object-cover" />
+              <img src={IMG.vios} alt="Sedan trắng AURUM" className="h-full w-full object-cover" />
               {/* paint tint */}
               <div
                 className="absolute inset-0 transition-all duration-700"
