@@ -20,7 +20,7 @@ function Hero() {
   return (
     <div ref={ref} className="grain relative flex h-[108svh] items-end overflow-hidden">
       <motion.div style={{ y: imgY, scale: imgScale }} className="absolute inset-0">
-        <img src={IMG.heroMonaco} alt="Mercedes-AMG GT tại bến du thuyền Monaco" className="h-full w-full object-cover" />
+        <img src={IMG.heroStreet} alt="Xe AURUM trên đường phố" className="h-full w-full object-cover" />
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/35 to-obsidian/55" />
       <div className="absolute inset-0 bg-gradient-to-r from-obsidian/70 via-transparent to-transparent" />
@@ -49,7 +49,7 @@ function Hero() {
           transition={{ delay: 2.95, duration: 0.8 }}
           className="mt-6 max-w-xl text-base leading-relaxed text-ivory/70"
         >
-          Nơi những cỗ máy vĩ đại nhất hành tinh tìm thấy chủ nhân xứng tầm. AURUM — chuẩn mực mới của sự xa xỉ.
+          Nơi những chiếc xe phổ thông chất lượng tìm thấy chủ nhân. AURUM — xe tốt, giá thật, phục vụ tận tâm.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -95,7 +95,7 @@ function Featured() {
   const [first, ...rest] = cars;
   return (
     <section className="mx-auto max-w-7xl px-6 py-24 md:py-32">
-      <SectionHead kicker="Bộ sưu tập" title={<>Những tuyệt phẩm <em className="text-gold">đang chờ</em> chủ nhân</>} />
+      <SectionHead kicker="Bộ sưu tập" title={<>Những chiếc xe <em className="text-gold">đáng mua</em> nhất</>} />
       <div className="mt-14 grid gap-6 md:grid-cols-3">
         <CarCard car={first} large />
         {rest.slice(0, 4).map((c) => (
@@ -140,7 +140,7 @@ function Configurator() {
         <div className="mt-14 grid items-center gap-10 lg:grid-cols-[1fr_360px]">
           <Reveal className="relative overflow-hidden border border-white/10">
             <div className="relative aspect-[16/9]">
-              <img src={IMG.amgGtrGold} alt="Mercedes-AMG GT R" className="h-full w-full object-cover" />
+              <img src={IMG.sedanWhite} alt="Sedan trắng AURUM" className="h-full w-full object-cover" />
               {/* paint tint */}
               <div
                 className="absolute inset-0 transition-all duration-700"
@@ -159,7 +159,7 @@ function Configurator() {
 
           <Reveal delay={0.15} className="flex flex-col gap-6">
             <p className="text-sm leading-relaxed text-ash">
-              Chọn màu sơn — xưởng AURUM sẽ phun thử ngay trên ảnh thực tế. Màu sắc thay đổi, đẳng cấp thì không.
+              Chọn màu sơn — xưởng AURUM sẽ phun thử ngay trên ảnh thực tế. Màu sắc thay đổi, chất lượng thì không.
             </p>
             <div className="flex flex-wrap gap-3">
               {PAINTS.map((p) => (
@@ -272,7 +272,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Marquee items={["Driven by Gold", "Mercedes-AMG", "Porsche", "Lamborghini", "Audi Sport", "BMW M", "Range Rover", "Est. 2026 · Saigon"]} />
+      <Marquee items={["Chất lượng vàng", "Toyota", "Honda", "Hyundai", "Kia", "Mazda", "Ford", "Mitsubishi", "Est. 2026 · Saigon"]} />
       <Featured />
       <Configurator />
       <Stats />
