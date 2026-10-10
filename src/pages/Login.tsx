@@ -64,6 +64,9 @@ export default function Login() {
             Đăng nhập
           </h1>
           <p className="mt-2 text-sm text-ash">Truy cập garage cá nhân, lịch lái thử và ưu đãi thành viên.</p>
+          <p className="mt-1.5 text-sm text-ash">
+            Chưa có tài khoản? <Link to="/auth/register" className="text-gold hover:underline">Đăng ký ngay</Link>
+          </p>
 
           <form onSubmit={submit} className="mt-8 space-y-5">
             <div className="relative">
