@@ -7,6 +7,9 @@ import { formatVND, formatVNDFull } from "../mocks/db";
 import type { CarWithBrand } from "../types";
 import { useShopStore } from "../stores/useShopStore";
 import LoanCalculator from "../components/LoanCalculator";
+import BookingModal from "../components/BookingModal";
+import DepositModal from "../components/DepositModal";
+import DarkRoom from "../components/DarkRoom";
 import CarCard from "../components/CarCard";
 import { Reveal, Magnetic } from "../components/fx";
 
@@ -53,6 +56,8 @@ export default function CarDetail() {
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const { toggleFavorite, isFavorite, toggleCompare, isComparing } = useShopStore();
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const [depositOpen, setDepositOpen] = useState(false);
 
   useEffect(() => {
     if (!slug) return;
@@ -196,13 +201,13 @@ export default function CarDetail() {
 
                 <div className="mt-3 space-y-3">
                   <Magnetic>
-                    <Link to="/test-drive" className="flex w-full items-center justify-center gap-2 bg-gold px-2 py-4 text-center font-condensed text-sm font-semibold uppercase tracking-[0.16em] text-obsidian transition-colors hover:bg-champagne">
+                    <button onClick={() => setBookingOpen(true)} className="flex w-full items-center justify-center gap-2 bg-gold px-2 py-4 text-center font-condensed text-sm font-semibold uppercase tracking-[0.16em] text-obsidian transition-colors hover:bg-champagne">
                       <CalendarCheck size={16} className="shrink-0" /> Đặt lịch lái thử
-                    </Link>
+                    </button>
                   </Magnetic>
-                  <Link to="/contact" className="flex w-full items-center justify-center gap-2 border border-white/25 px-2 py-4 text-center font-condensed text-sm font-semibold uppercase tracking-[0.16em] text-ivory transition-colors hover:border-gold hover:text-gold">
+                  <button onClick={() => setDepositOpen(true)} className="flex w-full items-center justify-center gap-2 border border-white/25 px-2 py-4 text-center font-condensed text-sm font-semibold uppercase tracking-[0.16em] text-ivory transition-colors hover:border-gold hover:text-gold">
                     Đặt cọc giữ xe
-                  </Link>
+                  </button>
                 </div>
 
                 <div className="mt-6">
@@ -212,7 +217,14 @@ export default function CarDetail() {
             </div>
           </div>
         </div>
+  </div>
 
+      {/* DARK ROOM — full bleed immersive showcase */}
+      <div className="mt-24">
+        <DarkRoom car={car} />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-6">
         {/* related */}
         {car.related.length > 0 && (
           <div className="mt-24">
@@ -230,6 +242,9 @@ export default function CarDetail() {
           </div>
         )}
       </div>
+
+      <BookingModal car={car} open={bookingOpen} onClose={() => setBookingOpen(false)} />
+      <DepositModal car={car} open={depositOpen} onClose={() => setDepositOpen(false)} />
     </div>
   );
 }
