@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, CalendarCheck, CheckCircle2, Loader2 } from "lucide-react";
 import type { CarWithBrand } from "../types";
 import { api } from "../services/api";
+import { useAuthStore } from "../stores/useAuthStore";
 
 const SLOTS = ["09:00", "10:30", "13:30", "15:00", "16:30", "18:00"];
 
@@ -27,6 +28,7 @@ export default function BookingModal({ car, open, onClose }: { car: CarWithBrand
   const [note, setNote] = useState("");
   const [state, setState] = useState<"form" | "busy" | "done" | "error">("form");
   const [errMsg, setErrMsg] = useState("");
+  const user = useAuthStore((s) => s.user);
 
   useEffect(() => {
     if (!open) return;
@@ -43,7 +45,7 @@ export default function BookingModal({ car, open, onClose }: { car: CarWithBrand
   const submit = async () => {
     setState("busy");
     try {
-      await api.bookTestDrive({ carId: car.id, date, slot, name: name.trim(), phone: phone.trim(), note: note.trim() });
+      await api.bookTestDrive({ carId: car.id, date, slot, name: name.trim(), phone: phone.trim(), note: note.trim(), userId: user?.id });
       setState("done");
     } catch (e) {
       setErrMsg(e instanceof Error ? e.message : "Đặt lịch thất bại");
