@@ -39,13 +39,59 @@ function findPaintMaterials(scene: THREE.Object3D): THREE.MeshStandardMaterial[]
   return [...found.values()];
 }
 
+/** Heuristic: find wheel/rim materials */
+function findWheelMaterials(scene: THREE.Object3D): THREE.MeshStandardMaterial[] {
+  const found = new Map<string, THREE.MeshStandardMaterial>();
+  scene.traverse((obj) => {
+    const mesh = obj as THREE.Mesh;
+    if (!mesh.isMesh) return;
+    const name = (mesh.name || "").toLowerCase();
+    if (!/wheel|rim|tire|tyre/.test(name)) return;
+    const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+    for (const m of mats) {
+      const mat = m as THREE.MeshStandardMaterial;
+      if (!mat || !("color" in mat)) continue;
+      const mn = (mat.name || "").toLowerCase();
+      // rims only, not tires (tires are near-black already)
+      if (/tire|tyre/.test(mn) || /tire|tyre/.test(name)) continue;
+      if (!found.has(mat.uuid)) found.set(mat.uuid, mat);
+    }
+  });
+  return [...found.values()];
+}
+
+/** Wheel finish presets */
+const WHEEL_FINISH: Record<string, { color: string; metalness: number; roughness: number } | null> = {
+  "w-std": null, // keep original
+  "w-sport": { color: "#17181a", metalness: 0.6, roughness: 0.45 },
+  "w-carbon": { color: "#0b0b0d", metalness: 0.85, roughness: 0.3 },
+  "w-gold": { color: "#D4AF37", metalness: 0.9, roughness: 0.28 },
+};
+
 /** Smoothly lerps paint color toward target every frame */
 function PaintLerp({ materials, targetHex }: { materials: THREE.MeshStandardMaterial[]; targetHex: string }) {
   const target = useMemo(() => new THREE.Color(targetHex), [targetHex]);
   useFrame((_, delta) => {
-    const k = 1 - Math.exp(-delta * 6); // smooth exponential approach
+    const k = 1 - Math.exp(-delta * 6);
+    for (const m of materials) m.color.lerp(target, k);
+  });
+  return null;
+}
+
+/** Smoothly lerps wheel finish toward target */
+function WheelLerp({ materials, wheelId, originals }: { materials: THREE.MeshStandardMaterial[]; wheelId: string; originals: Map<string, THREE.Color> }) {
+  const finish = WHEEL_FINISH[wheelId];
+  const target = useMemo(() => (finish ? new THREE.Color(finish.color) : null), [finish]);
+  useFrame((_, delta) => {
+    const k = 1 - Math.exp(-delta * 6);
     for (const m of materials) {
-      m.color.lerp(target, k);
+      const t = target ?? originals.get(m.uuid);
+      if (!t) continue;
+      m.color.lerp(t, k);
+      if (finish) {
+        m.metalness += (finish.metalness - m.metalness) * k;
+        m.roughness += (finish.roughness - m.roughness) * k;
+      }
     }
   });
   return null;
@@ -54,10 +100,12 @@ function PaintLerp({ materials, targetHex }: { materials: THREE.MeshStandardMate
 function CarModel({
   url,
   paintHex,
+  wheelId,
   onReady,
 }: {
   url: string;
   paintHex: string;
+  wheelId: string;
   onReady: (sphere: THREE.Sphere) => void;
 }) {
   const { scene } = useGLTF(url);
@@ -84,7 +132,6 @@ function CarModel({
 
   const paints = useMemo(() => {
     const found = findPaintMaterials(cloned);
-    // showroom finish: boost clearcoat/metalness once
     for (const m of found) {
       if ("metalness" in m) m.metalness = Math.max(m.metalness, 0.7);
       if ("roughness" in m) m.roughness = Math.min(m.roughness, 0.3);
@@ -98,6 +145,13 @@ function CarModel({
     return found;
   }, [cloned]);
 
+  const { wheels, wheelOriginals } = useMemo(() => {
+    const found = findWheelMaterials(cloned);
+    const originals = new Map<string, THREE.Color>();
+    for (const m of found) originals.set(m.uuid, m.color.clone());
+    return { wheels: found, wheelOriginals: originals };
+  }, [cloned]);
+
   // report bounding sphere for camera framing (after normalize)
   useEffect(() => {
     const sphere = new THREE.Box3().setFromObject(cloned).getBoundingSphere(new THREE.Sphere());
@@ -109,6 +163,7 @@ function CarModel({
     <group>
       <primitive object={cloned} />
       <PaintLerp materials={paints} targetHex={paintHex} />
+      <WheelLerp materials={wheels} wheelId={wheelId} originals={wheelOriginals} />
     </group>
   );
 }
@@ -135,7 +190,8 @@ const VIEW_DIRS: Record<string, THREE.Vector3> = {
   "Trên cao": new THREE.Vector3(0.25, 1, 0.35).normalize(),
 };
 
-/** Camera rig: keeps presets framed on the bounding sphere */
+/** Camera rig: keeps presets framed on the bounding sphere.
+ *  Fits after layout stabilizes (rAF) and refits on resize. */
 function CameraRig({
   controlsRef,
   sphere,
@@ -148,41 +204,59 @@ function CameraRig({
   viewTick: number;
 }) {
   const { camera, size } = useThree();
+  const fitted = useRef(false);
 
-  const fitDistance = (radius: number) => {
+  const frame = (dirKey: string) => {
+    const c = controlsRef.current;
+    if (!c || !sphere) return;
+    const dir = VIEW_DIRS[dirKey] ?? VIEW_DIRS["3/4 trước"];
     const vFov = THREE.MathUtils.degToRad((camera as THREE.PerspectiveCamera).fov);
-    const hFov = 2 * Math.atan(Math.tan(vFov / 2) * (size.width / size.height));
-    const fitV = radius / Math.sin(vFov / 2);
-    const fitH = radius / Math.sin(hFov / 2);
-    return Math.max(fitV, fitH) * 1.12;
+    const hFov = 2 * Math.atan(Math.tan(vFov / 2) * (size.width / Math.max(1, size.height)));
+    const radius = Math.max(0.5, sphere.radius);
+    const dist = Math.max(radius / Math.sin(vFov / 2), radius / Math.sin(hFov / 2)) * 1.18;
+    camera.position.copy(sphere.center).addScaledVector(dir, dist);
+    c.target.copy(sphere.center);
+    c.update();
   };
 
-  // initial fit when model loads
+  // initial fit: wait a frame so canvas size is real, retry until size > 0
   useEffect(() => {
-    if (!sphere || !controlsRef.current) return;
-    const dir = VIEW_DIRS["3/4 trước"];
-    const d = fitDistance(sphere.radius);
-    camera.position.copy(sphere.center).addScaledVector(dir, d);
-    controlsRef.current.target.copy(sphere.center);
-    controlsRef.current.update();
+    if (!sphere || fitted.current) return;
+    let raf = 0;
+    let tries = 0;
+    const attempt = () => {
+      tries++;
+      if (size.width > 10 && size.height > 10) {
+        frame("3/4 trước");
+        fitted.current = true;
+      } else if (tries < 30) {
+        raf = requestAnimationFrame(attempt);
+      }
+    };
+    raf = requestAnimationFrame(attempt);
+    return () => cancelAnimationFrame(raf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sphere]);
+  }, [sphere, size.width, size.height]);
+
+  // refit on resize (only if user hasn't moved camera manually — keep simple: refit)
+  useEffect(() => {
+    if (!sphere || !fitted.current) return;
+    const t = setTimeout(() => frame(view), 150);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [size.width, size.height]);
 
   // preset changes
   useEffect(() => {
-    if (!sphere || !controlsRef.current || viewTick === 0) return;
-    const dir = VIEW_DIRS[view] ?? VIEW_DIRS["3/4 trước"];
-    const d = fitDistance(sphere.radius);
-    camera.position.copy(sphere.center).addScaledVector(dir, d);
-    controlsRef.current.target.copy(sphere.center);
-    controlsRef.current.update();
+    if (!sphere || viewTick === 0) return;
+    frame(view);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [viewTick]);
 
   return null;
 }
 
-export default function Car3DViewer({ paintHex, paintName }: { paintHex: string; paintName: string }) {
+export default function Car3DViewer({ paintHex, paintName, wheelId, wheelName }: { paintHex: string; paintName: string; wheelId: string; wheelName: string }) {
   const [url, setUrl] = useState(MODEL_URLS.hero);
   const [failed, setFailed] = useState(false);
   const [auto, setAuto] = useState(true);
@@ -242,7 +316,7 @@ export default function Car3DViewer({ paintHex, paintName }: { paintHex: string;
 
           <Suspense fallback={<Loader />}>
             <ErrorBoundary onError={handleError}>
-              <CarModel url={url} paintHex={paintHex} onReady={setSphere} />
+              <CarModel url={url} paintHex={paintHex} wheelId={wheelId} onReady={setSphere} />
             </ErrorBoundary>
           </Suspense>
 
@@ -269,7 +343,7 @@ export default function Car3DViewer({ paintHex, paintName }: { paintHex: string;
         <span className="h-6 w-6 rounded-full border border-white/30 transition-colors duration-500" style={{ background: paintHex }} />
         <div className="pointer-events-auto">
           <p className="font-condensed text-[10px] uppercase tracking-[0.25em] text-ash">Minh họa sơn 3D</p>
-          <p className="text-sm text-ivory">{paintName}</p>
+          <p className="text-sm text-ivory">{paintName} · {wheelName}</p>
         </div>
       </div>
 
