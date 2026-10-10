@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useMemo, useRef, useState, Component, type ReactNode } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, useGLTF, Html, useProgress } from "@react-three/drei";
+import { OrbitControls, useGLTF, Html, useProgress, MeshReflectorMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
 export const MODEL_URLS = {
@@ -295,23 +295,52 @@ export default function Car3DViewer({ paintHex, paintName, wheelId, wheelName }:
           dpr={[1, 2]}
           camera={{ position: [6, 2.5, 6], fov: 38 }}
           gl={{ antialias: true, powerPreference: "high-performance" }}
-          onCreated={({ gl }) => gl.setClearColor("#080706")}
+          onCreated={({ gl }) => gl.setClearColor("#0a0908")}
         >
-          <ambientLight intensity={0.55} />
-          <directionalLight position={[5, 8, 5]} intensity={2.2} color="#fff5e0" />
-          <directionalLight position={[-6, 4, -4]} intensity={1.1} color="#cfe0ff" />
-          <directionalLight position={[0, 3, -7]} intensity={0.9} color="#ffffff" />
-          <spotLight position={[0, 7, 0]} angle={0.5} penumbra={1} intensity={3} color="#ffe9c4" />
-          <pointLight position={[-3, 1.5, 3]} intensity={0.8} color="#D4AF37" />
-          <pointLight position={[3, 1, -3]} intensity={0.5} color="#ffffff" />
+          {/* gradient backdrop */}
+          <color attach="background" args={["#0a0908"]} />
+          <fog attach="fog" args={["#0a0908", 14, 26]} />
 
-          <mesh rotation-x={-Math.PI / 2} position={[0, 0, 0]} receiveShadow>
-            <circleGeometry args={[9, 64]} />
-            <meshStandardMaterial color="#0d0c0a" roughness={0.35} metalness={0.6} />
+          {/* showroom lighting */}
+          <ambientLight intensity={0.5} />
+          {/* key light */}
+          <directionalLight position={[5, 8, 5]} intensity={2.4} color="#fff5e0" />
+          {/* cool rim from behind-left for edge definition */}
+          <directionalLight position={[-7, 5, -5]} intensity={1.6} color="#bcd2ff" />
+          {/* warm fill from right */}
+          <directionalLight position={[6, 3, -4]} intensity={0.8} color="#ffd9a0" />
+          {/* top spotlight */}
+          <spotLight position={[0, 8, 0]} angle={0.45} penumbra={0.9} intensity={3.2} color="#ffe9c4" />
+          {/* under-glow to lift the car off the floor */}
+          <pointLight position={[0, 0.35, 0]} intensity={0.9} distance={5} color="#D4AF37" />
+          <pointLight position={[-3, 1.2, 3.5]} intensity={0.6} color="#D4AF37" />
+
+          {/* mirror showroom floor — light gray so dark cars stay visible */}
+          <mesh rotation-x={-Math.PI / 2} position={[0, 0, 0]}>
+            <circleGeometry args={[11, 64]} />
+            <MeshReflectorMaterial
+              blur={[200, 50]}
+              resolution={1024}
+              mixBlur={0.8}
+              mixStrength={18}
+              roughness={0.75}
+              depthScale={1.1}
+              minDepthThreshold={0.4}
+              maxDepthThreshold={1.4}
+              color="#3a3a40"
+              metalness={0.4}
+              mirror={0.5}
+            />
           </mesh>
-          <mesh rotation-x={-Math.PI / 2} position={[0, 0.001, 0]}>
-            <ringGeometry args={[3.4, 3.45, 64]} />
-            <meshBasicMaterial color="#D4AF37" transparent opacity={0.5} side={THREE.DoubleSide} />
+          {/* gold turntable ring */}
+          <mesh rotation-x={-Math.PI / 2} position={[0, 0.002, 0]}>
+            <ringGeometry args={[3.5, 3.56, 72]} />
+            <meshBasicMaterial color="#D4AF37" transparent opacity={0.55} side={THREE.DoubleSide} />
+          </mesh>
+          {/* soft radial glow behind car */}
+          <mesh position={[0, 2.2, -6]}>
+            <planeGeometry args={[16, 9]} />
+            <meshBasicMaterial color="#1a1408" transparent opacity={0.55} />
           </mesh>
 
           <Suspense fallback={<Loader />}>
@@ -328,9 +357,10 @@ export default function Car3DViewer({ paintHex, paintName, wheelId, wheelName }:
             enableDamping
             dampingFactor={0.08}
             enablePan={false}
-            minDistance={4}
-            maxDistance={16}
-            maxPolarAngle={Math.PI / 2 - 0.04}
+            minDistance={4.5}
+            maxDistance={13}
+            maxPolarAngle={Math.PI / 2 - 0.06}
+            minPolarAngle={Math.PI / 7}
             autoRotate={auto}
             autoRotateSpeed={1.1}
             onStart={() => setAuto(false)}
