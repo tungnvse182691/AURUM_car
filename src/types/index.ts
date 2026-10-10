@@ -21,6 +21,8 @@ export interface Brand {
 
 export type CarStatus = "available" | "reserved" | "sold" | "hidden";
 
+export type BodyStyle = "sedan" | "suv" | "hatchback" | "pickup" | "mpv";
+
 export interface Car {
   id: string;
   slug: string;
@@ -53,6 +55,7 @@ export interface Car {
   views: number;
   staffId?: string;
   createdAt: string;
+  bodyStyle: BodyStyle; // 3D model style for Studio
 }
 
 export interface Favorite {
