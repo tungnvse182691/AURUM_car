@@ -134,9 +134,10 @@ export const useStudioStore = create<StudioState>()(
 );
 
 export function studioPrice(base: number, s: Pick<StudioState, "paintId" | "wheelId" | "interiorId" | "packageIds">) {
-  const paint = PAINTS.find((p) => p.id === s.paintId);
-  const wheel = WHEELS.find((w) => w.id === s.wheelId);
-  const interior = INTERIORS.find((i) => i.id === s.interiorId);
+  // Fall back to defaults if a persisted id no longer exists (e.g. after catalog updates)
+  const paint = PAINTS.find((p) => p.id === s.paintId) ?? PAINTS[0];
+  const wheel = WHEELS.find((w) => w.id === s.wheelId) ?? WHEELS[0];
+  const interior = INTERIORS.find((i) => i.id === s.interiorId) ?? INTERIORS[0];
   const pkgs = PACKAGES.filter((p) => s.packageIds.includes(p.id));
   return {
     base,
