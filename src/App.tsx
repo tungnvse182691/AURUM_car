@@ -7,6 +7,7 @@ import CarDetail from "./pages/CarDetail";
 import Compare from "./pages/Compare";
 import LoanCalcPage from "./pages/LoanCalcPage";
 import Favorites from "./pages/Favorites";
+import Login from "./pages/Login";
 import ComingSoon from "./pages/ComingSoon";
 import { Header, Footer } from "./components/layout";
 import CompareBar from "./components/CompareBar";
@@ -51,7 +52,7 @@ function Shell() {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/test-drive" element={<ComingSoon title="Đặt lịch lái thử" />} />
           <Route path="/contact" element={<ComingSoon title="Liên hệ" />} />
-          <Route path="/auth/login" element={<ComingSoon title="Đăng nhập" />} />
+          <Route path="/auth/login" element={<Login />} />
           <Route path="*" element={<ComingSoon title="Không tìm thấy" />} />
         </Routes>
       </main>
