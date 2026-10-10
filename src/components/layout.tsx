@@ -9,6 +9,7 @@ import { Magnetic } from "./fx";
 const NAV = [
   { to: "/", label: "Trang chủ" },
   { to: "/cars", label: "Bộ sưu tập" },
+  { to: "/studio", label: "Thiết kế" },
   { to: "/compare", label: "So sánh" },
   { to: "/loan-calculator", label: "Trả góp" },
   { to: "/favorites", label: "Yêu thích" },
@@ -70,13 +71,13 @@ export function Header() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-7 xl:gap-9 lg:flex">
+          <nav className="hidden items-center gap-6 xl:gap-8 lg:flex">
             {NAV.map((n) => (
               <NavLink
                 key={n.to}
                 to={n.to}
                 className={({ isActive }) =>
-                  `group relative font-condensed text-[12px] xl:text-[13px] font-medium uppercase tracking-[0.22em] xl:tracking-[0.28em] transition-colors ${
+                  `group relative whitespace-nowrap font-condensed text-[11px] xl:text-[12px] font-medium uppercase tracking-[0.18em] xl:tracking-[0.22em] transition-colors ${
                     isActive ? "text-gold" : "text-ivory/75 hover:text-ivory"
                   }`
                 }
