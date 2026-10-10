@@ -133,7 +133,7 @@ export default function Car3DViewer({
         <fog attach="fog" args={["#0a0908", 15, 30]} />
 
         {/* showroom lighting */}
-        <ambientLight intensity={0.55} />
+        <ambientLight intensity={0.8} />
         <directionalLight position={[5, 8, 5]} intensity={2.4} color="#fff5e0" castShadow />
         <directionalLight position={[-7, 5, -5]} intensity={1.6} color="#bcd2ff" />
         <directionalLight position={[6, 3, -4]} intensity={0.8} color="#ffd9a0" />
