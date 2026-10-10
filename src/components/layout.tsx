@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X, Phone, MapPin, Clock, ArrowUpRight } from "lucide-react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, Phone, MapPin, Clock, ArrowUpRight, User, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import AurumLogo from "./brand/AurumLogo";
+import { useAuthStore } from "../stores/useAuthStore";
 import { Magnetic } from "./fx";
 
 const NAV = [
@@ -32,7 +33,10 @@ function GoldButton({ to, children }: { to: string; children: React.ReactNode })
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [userOpen, setUserOpen] = useState(false);
   const loc = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuthStore();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -56,13 +60,13 @@ export function Header() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-9 lg:flex">
+          <nav className="hidden items-center gap-7 xl:gap-9 lg:flex">
             {NAV.map((n) => (
               <NavLink
                 key={n.to}
                 to={n.to}
                 className={({ isActive }) =>
-                  `group relative font-condensed text-[13px] font-medium uppercase tracking-[0.28em] transition-colors ${
+                  `group relative font-condensed text-[12px] xl:text-[13px] font-medium uppercase tracking-[0.22em] xl:tracking-[0.28em] transition-colors ${
                     isActive ? "text-gold" : "text-ivory/75 hover:text-ivory"
                   }`
                 }
@@ -73,7 +77,49 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden items-center gap-3 lg:flex">
+            {user ? (
+              <div className="relative">
+                <button
+                  onClick={() => setUserOpen(!userOpen)}
+                  className="flex items-center gap-2.5 border border-white/15 px-4 py-3 text-ivory transition-colors hover:border-gold/60"
+                  aria-label="Tài khoản"
+                >
+                  <span className="flex h-7 w-7 items-center justify-center bg-gold font-condensed text-xs font-bold text-obsidian">
+                    {user.name.charAt(0).toUpperCase()}
+                  </span>
+                  <span className="max-w-[120px] truncate font-condensed text-xs uppercase tracking-[0.18em]">{user.name}</span>
+                </button>
+                <AnimatePresence>
+                  {userOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      className="absolute right-0 top-full mt-2 w-52 border border-white/10 bg-obsidian/95 backdrop-blur-xl"
+                    >
+                      <div className="border-b border-white/10 px-5 py-4">
+                        <p className="text-sm text-ivory">{user.name}</p>
+                        <p className="mt-0.5 font-condensed text-[11px] uppercase tracking-[0.2em] text-gold">{user.role}</p>
+                      </div>
+                      <Link to="/favorites" onClick={() => setUserOpen(false)} className="block px-5 py-3 text-sm text-ivory/80 hover:bg-white/5 hover:text-ivory">
+                        Xe yêu thích
+                      </Link>
+                      <button
+                        onClick={() => { logout(); setUserOpen(false); navigate("/"); }}
+                        className="flex w-full items-center gap-2 px-5 py-3 text-left text-sm text-ivory/80 hover:bg-white/5 hover:text-ivory"
+                      >
+                        <LogOut size={14} /> Đăng xuất
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              <Link to="/auth/login" className="flex items-center gap-2 border border-white/15 px-4 py-3 font-condensed text-xs uppercase tracking-[0.2em] text-ivory transition-colors hover:border-gold hover:text-gold" aria-label="Đăng nhập">
+                <User size={15} /> Đăng nhập
+              </Link>
+            )}
             <GoldButton to="/test-drive">Lái thử</GoldButton>
           </div>
 
