@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="aurumGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8A6A2F"/>
+      <stop offset="22%" stop-color="#C9A227"/>
+      <stop offset="40%" stop-color="#F6E27A"/>
+      <stop offset="55%" stop-color="#E8C66A"/>
+      <stop offset="75%" stop-color="#B48A3C"/>
+      <stop offset="100%" stop-color="#6E5320"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="44" fill="#0A0907"/>
+  <g transform="translate(18,18) scale(0.82)">
+    <circle cx="100" cy="100" r="94" fill="none" stroke="url(#aurumGold)" stroke-width="4"/>
+    <path d="M82 70 L87 52 L93 62 L100 48 L107 62 L113 52 L118 70 Z" fill="url(#aurumGold)"/>
+    <path d="M100 66 L142 150 L124 150 L100 98 L76 150 L58 150 Z" fill="url(#aurumGold)"/>
+    <path d="M100 106 L114 120 L100 134 L86 120 Z" fill="#F6E27A"/>
+  </g>
+</svg>

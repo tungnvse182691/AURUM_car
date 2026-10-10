@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── AURUM MOTORS · Dark Luxury design tokens ── */
+  --color-obsidian: #0a0907;
+  --color-coal: #141414;
+  --color-carbon: #1a1a1a;
+  --color-graphite: #2a2a2e;
+  --color-ivory: #f5f2ea;
+  --color-ash: #9a958a;
+  --color-gold: #d4af37;
+  --color-champagne: #c9a96a;
+  --color-oldgold: #c9a227;
+  --color-emerald-deep: #0e3b2e;
+  --color-burgundy: #4a1420;
+
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-cinzel: "Cinzel", Georgia, serif;
+  --font-condensed: "Barlow Condensed", "Oswald", sans-serif;
+  --font-sans: "Inter", "Manrope", system-ui, sans-serif;
+}
+
+html {
+  background: var(--color-obsidian);
+}
+
+body {
+  background: var(--color-obsidian);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: #0a0907;
+}
+
+/* thin elegant scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0907;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2e;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c9a227;
+}
+
+/* film grain overlay utility */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* gold hairline divider */
+.gold-hairline {
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+  height: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
