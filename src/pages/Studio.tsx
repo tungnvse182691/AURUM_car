@@ -129,7 +129,12 @@ export default function Studio() {
               </div>
 
               {view3d ? (
-                <Car3DViewer paintHex={paint.hex} paintName={paint.name} />
+                <Car3DViewer
+                  paintHex={paint.hex}
+                  paintName={paint.name}
+                  wheelId={s.wheelId}
+                  wheelName={WHEELS.find((w) => w.id === s.wheelId)?.name ?? ""}
+                />
               ) : (
               <div className="grain relative overflow-hidden border border-white/10 bg-carbon">
                 <motion.img
