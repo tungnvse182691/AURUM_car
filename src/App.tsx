@@ -18,6 +18,7 @@ import AdminBookings from "./pages/admin/Bookings";
 import AdminOrders from "./pages/admin/Orders";
 import AdminUsers from "./pages/admin/Users";
 import Studio from "./pages/Studio";
+import TestDrive from "./pages/TestDrive";
 import ComingSoon from "./pages/ComingSoon";
 import { Header, Footer } from "./components/layout";
 import CompareBar from "./components/CompareBar";
@@ -64,7 +65,7 @@ function Shell() {
           <Route path="/loan-calculator" element={<LoanCalcPage />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/studio" element={<Studio />} />
-          <Route path="/test-drive" element={<ComingSoon title="Đặt lịch lái thử" />} />
+          <Route path="/test-drive" element={<TestDrive />} />
           <Route path="/contact" element={<ComingSoon title="Liên hệ" />} />
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/register" element={<Register />} />
