@@ -64,7 +64,6 @@ export default function RealCarModel({
   // Auto-center and position on floor
   useEffect(() => {
     const box = new THREE.Box3().setFromObject(paintedScene);
-    const center = box.getCenter(new THREE.Vector3());
     const size = box.getSize(new THREE.Vector3());
     // Scale to fit (target ~4 units long)
     const maxDim = Math.max(size.x, size.y, size.z);
