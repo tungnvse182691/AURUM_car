@@ -1,1 +1,86 @@
-aW1wb3J0IHsgdXNlRWZmZWN0LCB1c2VNZW1vIH0gZnJvbSAicmVhY3QiOwppbXBvcnQgeyB1c2VHTFRGIH0gZnJvbSAiQHJlYWN0LXRocmVlL2RyZWkiOwppbXBvcnQgKiBhcyBUSFJFRSBmcm9tICJ0aHJlZSI7Cgpjb25zdCBIRl9CQVNFID0gImh0dHBzOi8vaHVnZ2luZ2ZhY2UuY28vZGF0YXNldHMvdHViZWNhbTAwMDAxL2F1cnVtLTNkLWNhcnMvcmVzb2x2ZS9tYWluL21vZGVscyI7CgovKiogTWFwIGNhciBzbHVnIHRvIDNEIG1vZGVsIGZpbGUgKi8KZXhwb3J0IGNvbnN0IENBUl9NT0RFTF9NQVA6IFJlY29yZDxzdHJpbmcsIHN0cmluZz4gPSB7CiAgInRveW90YS12aW9zLWctMjAyNCI6ICJ2aW9zLmdsYiIsCiAgImhvbmRhLWNpdHktcnMtMjAyNCI6ICJjaXR5LmdsYiIsCiAgImh5dW5kYWktYWNjZW50LTIwMjQiOiAiYWNjZW50LmdsYiIsCiAgIm1hemRhLTMtMTUtMjAyNCI6ICJtYXpkYTNzZWRhbi5nbGIiLAogICJraWEtazMtMjAtMjAyNCI6ICJrMy5nbGIiLAogICJ0b3lvdGEtY29yb2xsYS1hbHRpcy0yMDI0IjogImFsdGlzLmdsYiIsCiAgInRveW90YS1jb3JvbGxhLWNyb3NzLTIwMjQiOiAiY29yb2xsYWNyb3NzLmdsYiIsCiAgImhvbmRhLWNydi0yMDI0IjogImNydi5nbGIiLAogICJoeXVuZGFpLXR1Y3Nvbi0yMDI0IjogInR1Y3Nvbi5nbGIiLAogICJtYXpkYS1jeDUtMjAyNCI6ICJjeDUuZ2xiIiwKICAia2lhLXNlbHRvcy0yMDI0IjogInNlbHRvcy5nbGIiLAogICJmb3JkLXRlcnJpdG9yeS0yMDI0IjogInRlcnJpdG9yeS5nbGIiLAogICJ0b3lvdGEteWFyaXMtMjAyNCI6ICJ5YXJpcy5nbGIiLAogICJtYXpkYS0zLWhhdGNoYmFjay0yMDI0IjogIm1hemRhM2hiLmdsYiIsCiAgImZvcmQtcmFuZ2VyLTIwMjQiOiAicmFuZ2VyLmdsYiIsCiAgInRveW90YS1oaWx1eC0yMDI0IjogImhpbHV4LmdsYiIsCiAgIm1pdHN1YmlzaGkteHBhbmRlci0yMDI0IjogInhwYW5kZXIuZ2xiIiwKICAidG95b3RhLWlubm92YS1jcm9zcy0yMDI0IjogImlubm92YS5nbGIiLAp9OwoKZXhwb3J0IGZ1bmN0aW9uIGdldE1vZGVsVXJsKHNsdWc6IHN0cmluZyk6IHN0cmluZyB8IG51bGwgewogIGNvbnN0IGZpbGUgPSBDQVJfTU9ERUxfTUFQW3NsdWddOwogIHJldHVybiBmaWxlID8gYCR7SEZfQkFTRX0vJHtmaWxlfWAgOiBudWxsOwp9CgpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBSZWFsQ2FyTW9kZWwoewogIG1vZGVsVXJsLAogIHBhaW50SGV4LAp9OiB7CiAgbW9kZWxVcmw6IHN0cmluZzsKICBwYWludEhleDogc3RyaW5nOwp9KSB7CiAgY29uc3QgeyBzY2VuZSB9ID0gdXNlR0xURihtb2RlbFVybCwgdHJ1ZSk7CgogIGNvbnN0IHBhaW50ZWRTY2VuZSA9IHVzZU1lbW8oKCkgPT4gewogICAgY29uc3QgY2xvbmVkID0gc2NlbmUuY2xvbmUoKTsKICAgIGNvbnN0IHBhaW50Q29sb3IgPSBuZXcgVEhSRUUuQ29sb3IocGFpbnRIZXgpOwogICAgY2xvbmVkLnRyYXZlcnNlKChvYmopID0+IHsKICAgICAgaWYgKChvYmogYXMgVEhSRUUuTWVzaCkuaXNNZXNoKSB7CiAgICAgICAgY29uc3QgbWVzaCA9IG9iaiBhcyBUSFJFRS5NZXNoOwogICAgICAgIC8vIEFwcGx5IGNhciBwYWludCBtYXRlcmlhbCAtIGtlZXAgb3JpZ2luYWwgZ2VvbWV0cnksIGFwcGx5IHBhaW50IGNvbG9yCiAgICAgICAgbWVzaC5tYXRlcmlhbCA9IG5ldyBUSFJFRS5NZXNoUGh5c2ljYWxNYXRlcmlhbCh7CiAgICAgICAgICBjb2xvcjogcGFpbnRDb2xvciwKICAgICAgICAgIG1ldGFsbmVzczogMC43LAogICAgICAgICAgcm91Z2huZXNzOiAwLjMsCiAgICAgICAgICBjbGVhcmNvYXQ6IDEuMCwKICAgICAgICAgIGNsZWFyY29hdFJvdWdobmVzczogMC4xNSwKICAgICAgICB9KTsKICAgICAgICBtZXNoLmNhc3RTaGFkb3cgPSB0cnVlOwogICAgICAgIG1lc2gucmVjZWl2ZVNoYWRvdyA9IHRydWU7CiAgICAgIH0KICAgIH0pOwogICAgcmV0dXJuIGNsb25lZDsKICB9LCBbc2NlbmUsIHBhaW50SGV4XSk7CgogIC8vIEF1dG8tY2VudGVyIGFuZCBzY2FsZQogIHVzZUVmZmVjdCgoKSA9PiB7CiAgICBjb25zdCBib3ggPSBuZXcgVEhSRUUuQm94MygpLnNldEZyb21PYmplY3QocGFpbnRlZFNjZW5lKTsKICAgIGNvbnN0IGNlbnRlciA9IGJveC5nZXRDZW50ZXIobmV3IFRIUkVFLlZlY3RvcjMoKSk7CiAgICBjb25zdCBzaXplID0gYm94LmdldFNpemUobmV3IFRIUkVFLlZlY3RvcjMoKSk7CiAgICAvLyBDZW50ZXIgdGhlIG1vZGVsCiAgICBwYWludGVkU2NlbmUucG9zaXRpb24uc3ViKGNlbnRlcik7CiAgICAvLyBTY2FsZSB0byBmaXQgKHRhcmdldCB+NCB1bml0cyBsb25nKQogICAgY29uc3QgbWF4RGltID0gTWF0aC5tYXgoc2l6ZS54LCBzaXplLnksIHNpemUueik7CiAgICBpZiAobWF4RGltID4gMCkgewogICAgICBjb25zdCBzY2FsZSA9IDQgLyBtYXhEaW07CiAgICAgIHBhaW50ZWRTY2VuZS5zY2FsZS5zZXRTY2FsYXIoc2NhbGUpOwogICAgfQogIH0sIFtwYWludGVkU2NlbmVdKTsKCiAgcmV0dXJuIDxwcmltaXRpdmUgb2JqZWN0PXtwYWludGVkU2NlbmV9IC8+Owp9CgovLyBQcmVsb2FkIGhlbHBlcgpleHBvcnQgZnVuY3Rpb24gcHJlbG9hZE1vZGVsKHNsdWc6IHN0cmluZykgewogIGNvbnN0IHVybCA9IGdldE1vZGVsVXJsKHNsdWcpOwogIGlmICh1cmwpIHVzZUdMVEYucHJlbG9hZCh1cmwsIHRydWUpOwp9Cg==
+import { useEffect, useMemo } from "react";
+import { useGLTF } from "@react-three/drei";
+import * as THREE from "three";
+
+const HF_BASE = "https://huggingface.co/datasets/tubecam00001/aurum-3d-cars/resolve/main/models";
+
+/** Map car slug to 3D model file */
+export const CAR_MODEL_MAP: Record<string, string> = {
+  "toyota-vios-g-2024": "vios.glb",
+  "honda-city-rs-2024": "city.glb",
+  "hyundai-accent-2024": "accent.glb",
+  "mazda-3-15-2024": "mazda3sedan.glb",
+  "kia-k3-20-2024": "k3.glb",
+  "toyota-corolla-altis-2024": "altis.glb",
+  "toyota-corolla-cross-2024": "corollacross.glb",
+  "honda-crv-2024": "crv.glb",
+  "hyundai-tucson-2024": "tucson.glb",
+  "mazda-cx5-2024": "cx5.glb",
+  "kia-seltos-2024": "seltos.glb",
+  "ford-territory-2024": "territory.glb",
+  "toyota-yaris-2024": "yaris.glb",
+  "mazda-3-hatchback-2024": "mazda3hb.glb",
+  "ford-ranger-2024": "ranger.glb",
+  "toyota-hilux-2024": "hilux.glb",
+  "mitsubishi-xpander-2024": "xpander.glb",
+  "toyota-innova-cross-2024": "innova.glb",
+};
+
+export function getModelUrl(slug: string): string | null {
+  const file = CAR_MODEL_MAP[slug];
+  return file ? `${HF_BASE}/${file}` : null;
+}
+
+export default function RealCarModel({
+  modelUrl,
+  paintHex,
+}: {
+  modelUrl: string;
+  paintHex: string;
+}) {
+  const { scene } = useGLTF(modelUrl, true);
+
+  const paintedScene = useMemo(() => {
+    const cloned = scene.clone();
+    const paintColor = new THREE.Color(paintHex);
+    cloned.traverse((obj) => {
+      if ((obj as THREE.Mesh).isMesh) {
+        const mesh = obj as THREE.Mesh;
+        // Apply car paint material - keep original geometry, apply paint color
+        mesh.material = new THREE.MeshPhysicalMaterial({
+          color: paintColor,
+          metalness: 0.7,
+          roughness: 0.3,
+          clearcoat: 1.0,
+          clearcoatRoughness: 0.15,
+        });
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+      }
+    });
+    return cloned;
+  }, [scene, paintHex]);
+
+  // Auto-center and scale
+  useEffect(() => {
+    const box = new THREE.Box3().setFromObject(paintedScene);
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+    // Center the model
+    paintedScene.position.sub(center);
+    // Scale to fit (target ~4 units long)
+    const maxDim = Math.max(size.x, size.y, size.z);
+    if (maxDim > 0) {
+      const scale = 4 / maxDim;
+      paintedScene.scale.setScalar(scale);
+    }
+  }, [paintedScene]);
+
+  return <primitive object={paintedScene} />;
+}
+
+// Preload helper
+export function preloadModel(slug: string) {
+  const url = getModelUrl(slug);
+  if (url) useGLTF.preload(url, true);
+}

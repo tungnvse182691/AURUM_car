@@ -1,1 +1,259 @@
-aW1wb3J0IHsgU3VzcGVuc2UsIHVzZUVmZmVjdCwgdXNlUmVmLCB1c2VTdGF0ZSB9IGZyb20gInJlYWN0IjsKaW1wb3J0IHsgQ2FudmFzLCB1c2VUaHJlZSB9IGZyb20gIkByZWFjdC10aHJlZS9maWJlciI7CmltcG9ydCB7IE9yYml0Q29udHJvbHMsIEh0bWwsIHVzZVByb2dyZXNzLCBNZXNoUmVmbGVjdG9yTWF0ZXJpYWwgfSBmcm9tICJAcmVhY3QtdGhyZWUvZHJlaSI7CmltcG9ydCAqIGFzIFRIUkVFIGZyb20gInRocmVlIjsKaW1wb3J0IFByb2NlZHVyYWxDYXJGYW1pbHksIHsgU1RZTEVfU1BIRVJFLCB0eXBlIEJvZHlTdHlsZSB9IGZyb20gIi4vUHJvY2VkdXJhbENhckZhbWlseSI7CmltcG9ydCBSZWFsQ2FyTW9kZWwsIHsgZ2V0TW9kZWxVcmwgfSBmcm9tICIuL1JlYWxDYXJNb2RlbCI7Cgpjb25zdCBWSUVXX0RJUlM6IFJlY29yZDxzdHJpbmcsIFRIUkVFLlZlY3RvcjM+ID0gewogICIzLzQgdHLGsOG7m2MiOiBuZXcgVEhSRUUuVmVjdG9yMygxLCAwLjQyLCAxKS5ub3JtYWxpemUoKSwKICAiSMO0bmciOiBuZXcgVEhSRUUuVmVjdG9yMygxLjM1LCAwLjI4LCAwKS5ub3JtYWxpemUoKSwKICAixJB1w7RpIjogbmV3IFRIUkVFLlZlY3RvcjMoLTEuMTUsIDAuNDUsIC0wLjU1KS5ub3JtYWxpemUoKSwKICAiVHLDqm4gY2FvIjogbmV3IFRIUkVFLlZlY3RvcjMoMC4yNSwgMS41LCAwLjI1KS5ub3JtYWxpemUoKSwKfTsKCi8qKiBDYW1lcmEgcmlnOiBwcmVzZXRzIGZyYW1lZCBvbiB0aGUgcGVyLXN0eWxlIGJvdW5kaW5nIHNwaGVyZSAqLwoKZnVuY3Rpb24gTG9hZGVyKCkgewogIGNvbnN0IHsgcHJvZ3Jlc3MgfSA9IHVzZVByb2dyZXNzKCk7CiAgcmV0dXJuICgKICAgIDxIdG1sIGNlbnRlcj4KICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZmxleC1jb2wgaXRlbXMtY2VudGVyIGdhcC0zIj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaC0xMCB3LTEwIGFuaW1hdGUtc3BpbiByb3VuZGVkLWZ1bGwgYm9yZGVyLTIgYm9yZGVyLWdvbGQvMzAgYm9yZGVyLXQtZ29sZCIgLz4KICAgICAgICA8cCBjbGFzc05hbWU9ImZvbnQtY29uZGVuc2VkIHRleHQteHMgdXBwZXJjYXNlIHRyYWNraW5nLVswLjNlbV0gdGV4dC1hc2giPgogICAgICAgICAgxJBhbmcgZOG7sW5nIHjGsOG7n25nIDNE4oCmIHtNYXRoLnJvdW5kKHByb2dyZXNzKX0lCiAgICAgICAgPC9wPgogICAgICA8L2Rpdj4KICAgIDwvSHRtbD4KICApOwp9CgovKiogQ2FtZXJhIHJpZzogcHJlc2V0cyBmcmFtZWQgb24gdGhlIHBlci1zdHlsZSBib3VuZGluZyBzcGhlcmUgKi8KZnVuY3Rpb24gQ2FtZXJhUmlnKHsKICBjb250cm9sc1JlZiwKICBib2R5U3R5bGUsCiAgdmlldywKICB2aWV3VGljaywKfTogewogIGNvbnRyb2xzUmVmOiBSZWFjdC5SZWZPYmplY3Q8UmVhY3QuRWxlbWVudFJlZjx0eXBlb2YgT3JiaXRDb250cm9scz4gfCBudWxsPjsKICBib2R5U3R5bGU6IEJvZHlTdHlsZTsKICB2aWV3OiBzdHJpbmc7CiAgdmlld1RpY2s6IG51bWJlcjsKfSkgewogIGNvbnN0IHsgY2FtZXJhLCBzaXplIH0gPSB1c2VUaHJlZSgpOwogIGNvbnN0IGZpdHRlZCA9IHVzZVJlZihmYWxzZSk7CiAgY29uc3Qgc3BoZXJlID0gU1RZTEVfU1BIRVJFW2JvZHlTdHlsZV07CgogIGNvbnN0IGZyYW1lID0gKGRpcktleTogc3RyaW5nKSA9PiB7CiAgICBjb25zdCBjID0gY29udHJvbHNSZWYuY3VycmVudDsKICAgIGlmICghYykgcmV0dXJuOwogICAgY29uc3QgZGlyID0gVklFV19ESVJTW2RpcktleV0gPz8gVklFV19ESVJTWyIzLzQgdHLGsOG7m2MiXTsKICAgIGNvbnN0IHZGb3YgPSBUSFJFRS5NYXRoVXRpbHMuZGVnVG9SYWQoKGNhbWVyYSBhcyBUSFJFRS5QZXJzcGVjdGl2ZUNhbWVyYSkuZm92KTsKICAgIGNvbnN0IGhGb3YgPSAyICogTWF0aC5hdGFuKE1hdGgudGFuKHZGb3YgLyAyKSAqIChzaXplLndpZHRoIC8gTWF0aC5tYXgoMSwgc2l6ZS5oZWlnaHQpKSk7CiAgICBjb25zdCByYWRpdXMgPSBzcGhlcmUucmFkaXVzOwogICAgY29uc3QgZGlzdCA9IE1hdGgubWF4KHJhZGl1cyAvIE1hdGguc2luKHZGb3YgLyAyKSwgcmFkaXVzIC8gTWF0aC5zaW4oaEZvdiAvIDIpKSAqIDEuMDU7CiAgICBjYW1lcmEucG9zaXRpb24uY29weShzcGhlcmUuY2VudGVyKS5hZGRTY2FsZWRWZWN0b3IoZGlyLCBkaXN0KTsKICAgIGMudGFyZ2V0LmNvcHkoc3BoZXJlLmNlbnRlcik7CiAgICBjLnVwZGF0ZSgpOwogIH07CgogIHVzZUVmZmVjdCgoKSA9PiB7CiAgICBpZiAoZml0dGVkLmN1cnJlbnQpIHJldHVybjsKICAgIGxldCByYWYgPSAwOwogICAgbGV0IHRyaWVzID0gMDsKICAgIGNvbnN0IGF0dGVtcHQgPSAoKSA9PiB7CiAgICAgIHRyaWVzKys7CiAgICAgIGlmIChzaXplLndpZHRoID4gMTAgJiYgc2l6ZS5oZWlnaHQgPiAxMCkgewogICAgICAgIGZyYW1lKCIzLzQgdHLGsOG7m2MiKTsKICAgICAgICBmaXR0ZWQuY3VycmVudCA9IHRydWU7CiAgICAgIH0gZWxzZSBpZiAodHJpZXMgPCAzMCkgewogICAgICAgIHJhZiA9IHJlcXVlc3RBbmltYXRpb25GcmFtZShhdHRlbXB0KTsKICAgICAgfQogICAgfTsKICAgIHJhZiA9IHJlcXVlc3RBbmltYXRpb25GcmFtZShhdHRlbXB0KTsKICAgIHJldHVybiAoKSA9PiBjYW5jZWxBbmltYXRpb25GcmFtZShyYWYpOwogICAgLy8gZXNsaW50LWRpc2FibGUtbmV4dC1saW5lIHJlYWN0LWhvb2tzL2V4aGF1c3RpdmUtZGVwcwogIH0sIFtzaXplLndpZHRoLCBzaXplLmhlaWdodF0pOwoKICB1c2VFZmZlY3QoKCkgPT4gewogICAgaWYgKCFmaXR0ZWQuY3VycmVudCkgcmV0dXJuOwogICAgY29uc3QgdCA9IHNldFRpbWVvdXQoKCkgPT4gZnJhbWUodmlldyksIDEyMCk7CiAgICByZXR1cm4gKCkgPT4gY2xlYXJUaW1lb3V0KHQpOwogICAgLy8gZXNsaW50LWRpc2FibGUtbmV4dC1saW5lIHJlYWN0LWhvb2tzL2V4aGF1c3RpdmUtZGVwcwogIH0sIFtzaXplLndpZHRoLCBzaXplLmhlaWdodF0pOwoKICB1c2VFZmZlY3QoKCkgPT4gewogICAgaWYgKHZpZXdUaWNrID09PSAwKSByZXR1cm47CiAgICBmcmFtZSh2aWV3KTsKICAgIC8vIGVzbGludC1kaXNhYmxlLW5leHQtbGluZSByZWFjdC1ob29rcy9leGhhdXN0aXZlLWRlcHMKICB9LCBbdmlld1RpY2tdKTsKCiAgLy8gcmVmaXQgd2hlbiBjYXIgbW9kZWwgY2hhbmdlcwogIHVzZUVmZmVjdCgoKSA9PiB7CiAgICBpZiAoIWZpdHRlZC5jdXJyZW50KSByZXR1cm47CiAgICBmcmFtZSh2aWV3KTsKICAgIC8vIGVzbGludC1kaXNhYmxlLW5leHQtbGluZSByZWFjdC1ob29rcy9leGhhdXN0aXZlLWRlcHMKICB9LCBbYm9keVN0eWxlXSk7CgogIHJldHVybiBudWxsOwp9CgpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBDYXIzRFZpZXdlcih7CiAgY2FyU2x1ZywKICBib2R5U3R5bGUsCiAgcGFpbnRIZXgsCiAgcGFpbnROYW1lLAogIHdoZWVsSWQsCiAgd2hlZWxOYW1lLAp9OiB7CiAgY2FyU2x1Zzogc3RyaW5nOwogIGJvZHlTdHlsZTogQm9keVN0eWxlOwogIHBhaW50SGV4OiBzdHJpbmc7CiAgcGFpbnROYW1lOiBzdHJpbmc7CiAgd2hlZWxJZDogc3RyaW5nOwogIHdoZWVsTmFtZTogc3RyaW5nOwp9KSB7CiAgY29uc3QgW3ZpZXcsIHNldFZpZXddID0gdXNlU3RhdGUoIjMvNCB0csaw4bubYyIpOwogIGNvbnN0IFt2aWV3VGljaywgc2V0Vmlld1RpY2tdID0gdXNlU3RhdGUoMCk7CiAgY29uc3QgW2F1dG8sIHNldEF1dG9dID0gdXNlU3RhdGUodHJ1ZSk7CiAgY29uc3QgY29udHJvbHMgPSB1c2VSZWY8UmVhY3QuRWxlbWVudFJlZjx0eXBlb2YgT3JiaXRDb250cm9scz4+KG51bGwpOwogIGNvbnN0IG1vZGVsVXJsID0gZ2V0TW9kZWxVcmwoY2FyU2x1Zyk7CgogIGNvbnN0IHBpY2tWaWV3ID0gKHY6IHN0cmluZykgPT4gewogICAgc2V0Vmlldyh2KTsKICAgIHNldFZpZXdUaWNrKCh0KSA9PiB0ICsgMSk7CiAgICBzZXRBdXRvKGZhbHNlKTsKICB9OwoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIGgtWzUyMHB4XSB3LWZ1bGwgb3ZlcmZsb3ctaGlkZGVuIGJvcmRlciBib3JkZXItd2hpdGUvMTAgYmctWyMwYTA5MDhdIG1kOmgtWzU2MHB4XSI+CiAgICAgIDxDYW52YXMKICAgICAgICBkcHI9e1sxLCAyXX0KICAgICAgICBjYW1lcmE9e3sgcG9zaXRpb246IFs2LCAyLjUsIDZdLCBmb3Y6IDM4IH19CiAgICAgICAgZ2w9e3sgYW50aWFsaWFzOiB0cnVlLCBwb3dlclByZWZlcmVuY2U6ICJoaWdoLXBlcmZvcm1hbmNlIiB9fQogICAgICAgIHNoYWRvd3MKICAgICAgPgogICAgICAgIDxjb2xvciBhdHRhY2g9ImJhY2tncm91bmQiIGFyZ3M9e1siIzBhMDkwOCJdfSAvPgogICAgICAgIDxmb2cgYXR0YWNoPSJmb2ciIGFyZ3M9e1siIzBhMDkwOCIsIDE1LCAzMF19IC8+CgogICAgICAgIHsvKiBzaG93cm9vbSBsaWdodGluZyAqL30KICAgICAgICA8YW1iaWVudExpZ2h0IGludGVuc2l0eT17MC44fSAvPgogICAgICAgIDxkaXJlY3Rpb25hbExpZ2h0IHBvc2l0aW9uPXtbNSwgOCwgNV19IGludGVuc2l0eT17Mi40fSBjb2xvcj0iI2ZmZjVlMCIgY2FzdFNoYWRvdyAvPgogICAgICAgIDxkaXJlY3Rpb25hbExpZ2h0IHBvc2l0aW9uPXtbLTcsIDUsIC01XX0gaW50ZW5zaXR5PXsxLjZ9IGNvbG9yPSIjYmNkMmZmIiAvPgogICAgICAgIDxkaXJlY3Rpb25hbExpZ2h0IHBvc2l0aW9uPXtbNiwgMywgLTRdfSBpbnRlbnNpdHk9ezAuOH0gY29sb3I9IiNmZmQ5YTAiIC8+CiAgICAgICAgPHNwb3RMaWdodCBwb3NpdGlvbj17WzAsIDgsIDBdfSBhbmdsZT17MC40NX0gcGVudW1icmE9ezAuOX0gaW50ZW5zaXR5PXszLjJ9IGNvbG9yPSIjZmZlOWM0IiAvPgogICAgICAgIDxwb2ludExpZ2h0IHBvc2l0aW9uPXtbMCwgMC4zNSwgMF19IGludGVuc2l0eT17MC45fSBkaXN0YW5jZT17NX0gY29sb3I9IiNENEFGMzciIC8+CiAgICAgICAgPHBvaW50TGlnaHQgcG9zaXRpb249e1stMywgMS4yLCAzLjVdfSBpbnRlbnNpdHk9ezAuNn0gY29sb3I9IiNENEFGMzciIC8+CgogICAgICAgIHsvKiBtaXJyb3Igc2hvd3Jvb20gZmxvb3IgKi99CiAgICAgICAgPG1lc2ggcm90YXRpb24teD17LU1hdGguUEkgLyAyfSBwb3NpdGlvbj17WzAsIDAsIDBdfSByZWNlaXZlU2hhZG93PgogICAgICAgICAgPGNpcmNsZUdlb21ldHJ5IGFyZ3M9e1sxMSwgNjRdfSAvPgogICAgICAgICAgPE1lc2hSZWZsZWN0b3JNYXRlcmlhbAogICAgICAgICAgICBibHVyPXtbMjAwLCA1MF19CiAgICAgICAgICAgIHJlc29sdXRpb249ezEwMjR9CiAgICAgICAgICAgIG1peEJsdXI9ezAuOH0KICAgICAgICAgICAgbWl4U3RyZW5ndGg9ezE4fQogICAgICAgICAgICByb3VnaG5lc3M9ezAuNzV9CiAgICAgICAgICAgIGRlcHRoU2NhbGU9ezEuMX0KICAgICAgICAgICAgbWluRGVwdGhUaHJlc2hvbGQ9ezAuNH0KICAgICAgICAgICAgbWF4RGVwdGhUaHJlc2hvbGQ9ezEuNH0KICAgICAgICAgICAgY29sb3I9IiMzYTNhNDAiCiAgICAgICAgICAgIG1ldGFsbmVzcz17MC40fQogICAgICAgICAgICBtaXJyb3I9ezAuNX0KICAgICAgICAgIC8+CiAgICAgICAgPC9tZXNoPgogICAgICAgIHsvKiBnb2xkIHR1cm50YWJsZSByaW5nICovfQogICAgICAgIDxtZXNoIHJvdGF0aW9uLXg9ey1NYXRoLlBJIC8gMn0gcG9zaXRpb249e1swLCAwLjAwMiwgMF19PgogICAgICAgICAgPHJpbmdHZW9tZXRyeSBhcmdzPXtbMy41LCAzLjU2LCA3Ml19IC8+CiAgICAgICAgICA8bWVzaEJhc2ljTWF0ZXJpYWwgY29sb3I9IiNENEFGMzciIHRyYW5zcGFyZW50IG9wYWNpdHk9ezAuNTV9IHNpZGU9e1RIUkVFLkRvdWJsZVNpZGV9IC8+CiAgICAgICAgPC9tZXNoPgoKICAgICAgICA8U3VzcGVuc2UgZmFsbGJhY2s9ezxMb2FkZXIgLz59PgogICAgICAgICAge21vZGVsVXJsID8gKAogICAgICAgICAgICA8UmVhbENhck1vZGVsIG1vZGVsVXJsPXttb2RlbFVybH0gcGFpbnRIZXg9e3BhaW50SGV4fSAvPgogICAgICAgICAgKSA6ICgKICAgICAgICAgICAgPFByb2NlZHVyYWxDYXJGYW1pbHkgYm9keVN0eWxlPXtib2R5U3R5bGV9IHBhaW50SGV4PXtwYWludEhleH0gd2hlZWxJZD17d2hlZWxJZH0gLz4KICAgICAgICAgICl9CiAgICAgICAgPC9TdXNwZW5zZT4KCiAgICAgICAgPENhbWVyYVJpZyBjb250cm9sc1JlZj17Y29udHJvbHN9IGJvZHlTdHlsZT17Ym9keVN0eWxlfSB2aWV3PXt2aWV3fSB2aWV3VGljaz17dmlld1RpY2t9IC8+CgogICAgICAgIDxPcmJpdENvbnRyb2xzCiAgICAgICAgICByZWY9e2NvbnRyb2xzfQogICAgICAgICAgbWFrZURlZmF1bHQKICAgICAgICAgIGVuYWJsZURhbXBpbmcKICAgICAgICAgIGRhbXBpbmdGYWN0b3I9ezAuMDh9CiAgICAgICAgICBlbmFibGVQYW49e2ZhbHNlfQogICAgICAgICAgbWluRGlzdGFuY2U9ezQuNX0KICAgICAgICAgIG1heERpc3RhbmNlPXsxM30KICAgICAgICAgIG1heFBvbGFyQW5nbGU9e01hdGguUEkgLyAyIC0gMC4wNn0KICAgICAgICAgIG1pblBvbGFyQW5nbGU9e01hdGguUEkgLyA3fQogICAgICAgICAgYXV0b1JvdGF0ZT17YXV0b30KICAgICAgICAgIGF1dG9Sb3RhdGVTcGVlZD17MS4xfQogICAgICAgICAgb25TdGFydD17KCkgPT4gc2V0QXV0byhmYWxzZSl9CiAgICAgICAgLz4KICAgICAgPC9DYW52YXM+CgogICAgICB7Lyogb3ZlcmxheSBVSSAqL30KICAgICAgPGRpdiBjbGFzc05hbWU9InBvaW50ZXItZXZlbnRzLW5vbmUgYWJzb2x1dGUgbGVmdC01IHRvcC01IGZsZXggaXRlbXMtY2VudGVyIGdhcC0zIGJvcmRlciBib3JkZXItd2hpdGUvMTUgYmctb2JzaWRpYW4vNzAgcHgtNCBweS0yLjUgYmFja2Ryb3AtYmx1ciI+CiAgICAgICAgPHNwYW4KICAgICAgICAgIGNsYXNzTmFtZT0iaC02IHctNiByb3VuZGVkLWZ1bGwgYm9yZGVyIGJvcmRlci13aGl0ZS8zMCB0cmFuc2l0aW9uLWNvbG9ycyBkdXJhdGlvbi01MDAiCiAgICAgICAgICBzdHlsZT17eyBiYWNrZ3JvdW5kOiBwYWludEhleCB9fQogICAgICAgIC8+CiAgICAgICAgPGRpdj4KICAgICAgICAgIDxwIGNsYXNzTmFtZT0iZm9udC1jb25kZW5zZWQgdGV4dC1bMTBweF0gdXBwZXJjYXNlIHRyYWNraW5nLVswLjI1ZW1dIHRleHQtYXNoIj4KICAgICAgICAgICAge21vZGVsVXJsID8gIjNEIHRo4buxYyB04bq/IiA6ICJDb25jZXB0IDNEIEFVUlVNIn0KICAgICAgICAgIDwvcD4KICAgICAgICAgIDxwIGNsYXNzTmFtZT0idGV4dC1zbSB0ZXh0LWl2b3J5Ij4KICAgICAgICAgICAge3BhaW50TmFtZX0gwrcge3doZWVsTmFtZX0KICAgICAgICAgIDwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgPC9kaXY+CiAgICAgIDxwIGNsYXNzTmFtZT0icG9pbnRlci1ldmVudHMtbm9uZSBhYnNvbHV0ZSByaWdodC01IHRvcC01IGhpZGRlbiB0ZXh0LXJpZ2h0IGZvbnQtbW9ubyB0ZXh0LVsxMHB4XSBsZWFkaW5nLXJlbGF4ZWQgdGV4dC1hc2gvNjAgbWQ6YmxvY2siPgogICAgICAgIHttb2RlbFVybCA/ICgKICAgICAgICAgIDw+CiAgICAgICAgICAgIE1vZGVsIDNEIGThu7FuZyB04burIOG6o25oIHRo4bqtdAogICAgICAgICAgICA8YnIgLz4KICAgICAgICAgICAgbWluaCBo4buNYSBtw6B1IHPGoW4gJiBtw6JtIHhlCiAgICAgICAgICA8Lz4KICAgICAgICApIDogKAogICAgICAgICAgPD4KICAgICAgICAgICAgQ29uY2VwdCAzRCBkbyBBVVJVTSBk4buxbmcKICAgICAgICAgICAgPGJyIC8+CiAgICAgICAgICAgIG1pbmggaOG7jWEgbcOgdSBzxqFuICYgbcOibSB4ZQogICAgICAgICAgPC8+CiAgICAgICAgKX0KICAgICAgPC9wPgoKICAgICAgey8qIGNhbWVyYSBwcmVzZXRzICovfQogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgYm90dG9tLTUgbGVmdC01IGZsZXggZmxleC13cmFwIGdhcC0yIj4KICAgICAgICB7T2JqZWN0LmtleXMoVklFV19ESVJTKS5tYXAoKHYpID0+ICgKICAgICAgICAgIDxidXR0b24KICAgICAgICAgICAga2V5PXt2fQogICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBwaWNrVmlldyh2KX0KICAgICAgICAgICAgY2xhc3NOYW1lPXtgYm9yZGVyIHB4LTQgcHktMiBmb250LWNvbmRlbnNlZCB0ZXh0LXhzIHVwcGVyY2FzZSB0cmFja2luZy1bMC4yZW1dIHRyYW5zaXRpb24gJHsKICAgICAgICAgICAgICB2aWV3ID09PSB2CiAgICAgICAgICAgICAgICA/ICJib3JkZXItZ29sZCBiZy1nb2xkIHRleHQtb2JzaWRpYW4iCiAgICAgICAgICAgICAgICA6ICJib3JkZXItd2hpdGUvMjAgYmctb2JzaWRpYW4vNzAgdGV4dC1pdm9yeSBiYWNrZHJvcC1ibHVyIGhvdmVyOmJvcmRlci1nb2xkLzYwIgogICAgICAgICAgICB9YH0KICAgICAgICAgID4KICAgICAgICAgICAge3Z9CiAgICAgICAgICA8L2J1dHRvbj4KICAgICAgICApKX0KICAgICAgPC9kaXY+CgogICAgICB7LyogYXV0by1yb3RhdGUgKyBoaW50ICovfQogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgYm90dG9tLTUgcmlnaHQtNSBmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMyI+CiAgICAgICAgPHAgY2xhc3NOYW1lPSJoaWRkZW4gZm9udC1tb25vIHRleHQtWzEwcHhdIHRleHQtYXNoLzcwIGxnOmJsb2NrIj5Lw6lvIMSR4buDIHhvYXkgwrcgQ3Xhu5luIMSR4buDIHpvb208L3A+CiAgICAgICAgPGJ1dHRvbgogICAgICAgICAgb25DbGljaz17KCkgPT4gc2V0QXV0bygoYSkgPT4gIWEpfQogICAgICAgICAgY2xhc3NOYW1lPXtgYm9yZGVyIHB4LTQgcHktMiBmb250LWNvbmRlbnNlZCB0ZXh0LXhzIHVwcGVyY2FzZSB0cmFja2luZy1bMC4yZW1dIHRyYW5zaXRpb24gJHsKICAgICAgICAgICAgYXV0byA/ICJib3JkZXItZ29sZCBiZy1nb2xkLzE1IHRleHQtZ29sZCIgOiAiYm9yZGVyLXdoaXRlLzIwIGJnLW9ic2lkaWFuLzcwIHRleHQtaXZvcnkgYmFja2Ryb3AtYmx1ciIKICAgICAgICAgIH1gfQogICAgICAgID4KICAgICAgICAgIHthdXRvID8gIuKPuCBE4burbmcgeG9heSIgOiAi4pa2IFThu7EgxJHhu5luZyB4b2F5In0KICAgICAgICA8L2J1dHRvbj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICApOwp9Cg==
+import { Suspense, useEffect, useRef, useState } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import { OrbitControls, Html, useProgress, MeshReflectorMaterial } from "@react-three/drei";
+import * as THREE from "three";
+import ProceduralCarFamily, { STYLE_SPHERE, type BodyStyle } from "./ProceduralCarFamily";
+import RealCarModel, { getModelUrl } from "./RealCarModel";
+
+const VIEW_DIRS: Record<string, THREE.Vector3> = {
+  "3/4 trước": new THREE.Vector3(1, 0.42, 1).normalize(),
+  "Hông": new THREE.Vector3(1.35, 0.28, 0).normalize(),
+  "Đuôi": new THREE.Vector3(-1.15, 0.45, -0.55).normalize(),
+  "Trên cao": new THREE.Vector3(0.25, 1.5, 0.25).normalize(),
+};
+
+/** Camera rig: presets framed on the per-style bounding sphere */
+
+function Loader() {
+  const { progress } = useProgress();
+  return (
+    <Html center>
+      <div className="flex flex-col items-center gap-3">
+        <div className="h-10 w-10 animate-spin rounded-full border-2 border-gold/30 border-t-gold" />
+        <p className="font-condensed text-xs uppercase tracking-[0.3em] text-ash">
+          Đang dựng xưởng 3D… {Math.round(progress)}%
+        </p>
+      </div>
+    </Html>
+  );
+}
+
+/** Camera rig: presets framed on the per-style bounding sphere */
+function CameraRig({
+  controlsRef,
+  bodyStyle,
+  view,
+  viewTick,
+}: {
+  controlsRef: React.RefObject<React.ElementRef<typeof OrbitControls> | null>;
+  bodyStyle: BodyStyle;
+  view: string;
+  viewTick: number;
+}) {
+  const { camera, size } = useThree();
+  const fitted = useRef(false);
+  const sphere = STYLE_SPHERE[bodyStyle];
+
+  const frame = (dirKey: string) => {
+    const c = controlsRef.current;
+    if (!c) return;
+    const dir = VIEW_DIRS[dirKey] ?? VIEW_DIRS["3/4 trước"];
+    const vFov = THREE.MathUtils.degToRad((camera as THREE.PerspectiveCamera).fov);
+    const hFov = 2 * Math.atan(Math.tan(vFov / 2) * (size.width / Math.max(1, size.height)));
+    const radius = sphere.radius;
+    const dist = Math.max(radius / Math.sin(vFov / 2), radius / Math.sin(hFov / 2)) * 1.05;
+    camera.position.copy(sphere.center).addScaledVector(dir, dist);
+    c.target.copy(sphere.center);
+    c.update();
+  };
+
+  useEffect(() => {
+    if (fitted.current) return;
+    let raf = 0;
+    let tries = 0;
+    const attempt = () => {
+      tries++;
+      if (size.width > 10 && size.height > 10) {
+        frame("3/4 trước");
+        fitted.current = true;
+      } else if (tries < 30) {
+        raf = requestAnimationFrame(attempt);
+      }
+    };
+    raf = requestAnimationFrame(attempt);
+    return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [size.width, size.height]);
+
+  useEffect(() => {
+    if (!fitted.current) return;
+    const t = setTimeout(() => frame(view), 120);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [size.width, size.height]);
+
+  useEffect(() => {
+    if (viewTick === 0) return;
+    frame(view);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [viewTick]);
+
+  // refit when car model changes
+  useEffect(() => {
+    if (!fitted.current) return;
+    frame(view);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bodyStyle]);
+
+  return null;
+}
+
+export default function Car3DViewer({
+  carSlug,
+  bodyStyle,
+  paintHex,
+  paintName,
+  wheelId,
+  wheelName,
+}: {
+  carSlug: string;
+  bodyStyle: BodyStyle;
+  paintHex: string;
+  paintName: string;
+  wheelId: string;
+  wheelName: string;
+}) {
+  const [view, setView] = useState("3/4 trước");
+  const [viewTick, setViewTick] = useState(0);
+  const [auto, setAuto] = useState(true);
+  const controls = useRef<React.ElementRef<typeof OrbitControls>>(null);
+  const modelUrl = getModelUrl(carSlug);
+
+  const pickView = (v: string) => {
+    setView(v);
+    setViewTick((t) => t + 1);
+    setAuto(false);
+  };
+
+  return (
+    <div className="relative h-[520px] w-full overflow-hidden border border-white/10 bg-[#0a0908] md:h-[560px]">
+      <Canvas
+        dpr={[1, 2]}
+        camera={{ position: [6, 2.5, 6], fov: 38 }}
+        gl={{ antialias: true, powerPreference: "high-performance" }}
+        shadows
+      >
+        <color attach="background" args={["#0a0908"]} />
+        <fog attach="fog" args={["#0a0908", 15, 30]} />
+
+        {/* showroom lighting */}
+        <ambientLight intensity={0.8} />
+        <directionalLight position={[5, 8, 5]} intensity={2.4} color="#fff5e0" castShadow />
+        <directionalLight position={[-7, 5, -5]} intensity={1.6} color="#bcd2ff" />
+        <directionalLight position={[6, 3, -4]} intensity={0.8} color="#ffd9a0" />
+        <spotLight position={[0, 8, 0]} angle={0.45} penumbra={0.9} intensity={3.2} color="#ffe9c4" />
+        <pointLight position={[0, 0.35, 0]} intensity={0.9} distance={5} color="#D4AF37" />
+        <pointLight position={[-3, 1.2, 3.5]} intensity={0.6} color="#D4AF37" />
+
+        {/* mirror showroom floor */}
+        <mesh rotation-x={-Math.PI / 2} position={[0, 0, 0]} receiveShadow>
+          <circleGeometry args={[11, 64]} />
+          <MeshReflectorMaterial
+            blur={[200, 50]}
+            resolution={1024}
+            mixBlur={0.8}
+            mixStrength={18}
+            roughness={0.75}
+            depthScale={1.1}
+            minDepthThreshold={0.4}
+            maxDepthThreshold={1.4}
+            color="#3a3a40"
+            metalness={0.4}
+            mirror={0.5}
+          />
+        </mesh>
+        {/* gold turntable ring */}
+        <mesh rotation-x={-Math.PI / 2} position={[0, 0.002, 0]}>
+          <ringGeometry args={[3.5, 3.56, 72]} />
+          <meshBasicMaterial color="#D4AF37" transparent opacity={0.55} side={THREE.DoubleSide} />
+        </mesh>
+
+        <Suspense fallback={<Loader />}>
+          {modelUrl ? (
+            <RealCarModel modelUrl={modelUrl} paintHex={paintHex} />
+          ) : (
+            <ProceduralCarFamily bodyStyle={bodyStyle} paintHex={paintHex} wheelId={wheelId} />
+          )}
+        </Suspense>
+
+        <CameraRig controlsRef={controls} bodyStyle={bodyStyle} view={view} viewTick={viewTick} />
+
+        <OrbitControls
+          ref={controls}
+          makeDefault
+          enableDamping
+          dampingFactor={0.08}
+          enablePan={false}
+          minDistance={4.5}
+          maxDistance={13}
+          maxPolarAngle={Math.PI / 2 - 0.06}
+          minPolarAngle={Math.PI / 7}
+          autoRotate={auto}
+          autoRotateSpeed={1.1}
+          onStart={() => setAuto(false)}
+        />
+      </Canvas>
+
+      {/* overlay UI */}
+      <div className="pointer-events-none absolute left-5 top-5 flex items-center gap-3 border border-white/15 bg-obsidian/70 px-4 py-2.5 backdrop-blur">
+        <span
+          className="h-6 w-6 rounded-full border border-white/30 transition-colors duration-500"
+          style={{ background: paintHex }}
+        />
+        <div>
+          <p className="font-condensed text-[10px] uppercase tracking-[0.25em] text-ash">
+            {modelUrl ? "3D thực tế" : "Concept 3D AURUM"}
+          </p>
+          <p className="text-sm text-ivory">
+            {paintName} · {wheelName}
+          </p>
+        </div>
+      </div>
+      <p className="pointer-events-none absolute right-5 top-5 hidden text-right font-mono text-[10px] leading-relaxed text-ash/60 md:block">
+        {modelUrl ? (
+          <>
+            Model 3D dựng từ ảnh thật
+            <br />
+            minh họa màu sơn & mâm xe
+          </>
+        ) : (
+          <>
+            Concept 3D do AURUM dựng
+            <br />
+            minh họa màu sơn & mâm xe
+          </>
+        )}
+      </p>
+
+      {/* camera presets */}
+      <div className="absolute bottom-5 left-5 flex flex-wrap gap-2">
+        {Object.keys(VIEW_DIRS).map((v) => (
+          <button
+            key={v}
+            onClick={() => pickView(v)}
+            className={`border px-4 py-2 font-condensed text-xs uppercase tracking-[0.2em] transition ${
+              view === v
+                ? "border-gold bg-gold text-obsidian"
+                : "border-white/20 bg-obsidian/70 text-ivory backdrop-blur hover:border-gold/60"
+            }`}
+          >
+            {v}
+          </button>
+        ))}
+      </div>
+
+      {/* auto-rotate + hint */}
+      <div className="absolute bottom-5 right-5 flex items-center gap-3">
+        <p className="hidden font-mono text-[10px] text-ash/70 lg:block">Kéo để xoay · Cuộn để zoom</p>
+        <button
+          onClick={() => setAuto((a) => !a)}
+          className={`border px-4 py-2 font-condensed text-xs uppercase tracking-[0.2em] transition ${
+            auto ? "border-gold bg-gold/15 text-gold" : "border-white/20 bg-obsidian/70 text-ivory backdrop-blur"
+          }`}
+        >
+          {auto ? "⏸ Dừng xoay" : "▶ Tự động xoay"}
+        </button>
+      </div>
+    </div>
+  );
+}
