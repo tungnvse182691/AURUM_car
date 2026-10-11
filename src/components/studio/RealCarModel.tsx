@@ -61,19 +61,22 @@ export default function RealCarModel({
     return cloned;
   }, [scene, paintHex]);
 
-  // Auto-center and scale
+  // Auto-center and position on floor
   useEffect(() => {
     const box = new THREE.Box3().setFromObject(paintedScene);
     const center = box.getCenter(new THREE.Vector3());
     const size = box.getSize(new THREE.Vector3());
-    // Center the model
-    paintedScene.position.sub(center);
     // Scale to fit (target ~4 units long)
     const maxDim = Math.max(size.x, size.y, size.z);
-    if (maxDim > 0) {
-      const scale = 4 / maxDim;
-      paintedScene.scale.setScalar(scale);
-    }
+    const scale = maxDim > 0 ? 4 / maxDim : 1;
+    paintedScene.scale.setScalar(scale);
+    // Recompute box after scale
+    const box2 = new THREE.Box3().setFromObject(paintedScene);
+    const center2 = box2.getCenter(new THREE.Vector3());
+    // Center X/Z, put bottom on floor (y=0)
+    paintedScene.position.x -= center2.x;
+    paintedScene.position.z -= center2.z;
+    paintedScene.position.y -= box2.min.y;
   }, [paintedScene]);
 
   return <primitive object={paintedScene} />;
