@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
-import { OrbitControls, Html, useProgress, MeshReflectorMaterial } from "@react-three/drei";
+import { OrbitControls, Html, useProgress, MeshReflectorMaterial, Environment } from "@react-three/drei";
 import * as THREE from "three";
 import ProceduralCarFamily, { STYLE_SPHERE, type BodyStyle } from "./ProceduralCarFamily";
 import RealCarModel, { getModelUrl } from "./RealCarModel";
@@ -144,6 +144,9 @@ export default function Car3DViewer({
         <spotLight position={[0, 8, 0]} angle={0.45} penumbra={0.9} intensity={3.2} color="#ffe9c4" />
         <pointLight position={[0, 0.35, 0]} intensity={0.9} distance={5} color="#D4AF37" />
         <pointLight position={[-3, 1.2, 3.5]} intensity={0.6} color="#D4AF37" />
+
+        {/* environment for realistic paint reflections */}
+        <Environment preset="city" />
 
         {/* mirror showroom floor */}
         <mesh rotation-x={-Math.PI / 2} position={[0, 0, 0]} receiveShadow>

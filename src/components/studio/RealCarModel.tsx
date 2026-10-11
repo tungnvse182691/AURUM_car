@@ -46,13 +46,14 @@ export default function RealCarModel({
     cloned.traverse((obj) => {
       if ((obj as THREE.Mesh).isMesh) {
         const mesh = obj as THREE.Mesh;
-        // Apply car paint material - keep original geometry, apply paint color
+        // Car paint: balanced metallic for good look with/without env map
         mesh.material = new THREE.MeshPhysicalMaterial({
           color: paintColor,
-          metalness: 0.7,
-          roughness: 0.3,
-          clearcoat: 1.0,
-          clearcoatRoughness: 0.15,
+          metalness: 0.5,
+          roughness: 0.35,
+          clearcoat: 0.8,
+          clearcoatRoughness: 0.2,
+          envMapIntensity: 1.2,
         });
         mesh.castShadow = true;
         mesh.receiveShadow = true;
