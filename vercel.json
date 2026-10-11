@@ -1,1 +1,20 @@
-{"headers":[{"headers":[{"key":"Service-Worker-Allowed","value":"/"}],"source":"/mockServiceWorker.js"}],"rewrites":[{"destination":"/index.html","source":"/(.*)"}]}
+{
+  "headers": [
+    {
+      "headers": [
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ],
+      "source": "/mockServiceWorker.js"
+    }
+  ],
+  "rewrites": [
+    {
+      "destination": "/index.html",
+      "source": "/(.*)"
+    }
+  ],
+  "_buildTrigger": "2026-10-11T07:45 force fresh Vercel build with synced IMG keys"
+}
