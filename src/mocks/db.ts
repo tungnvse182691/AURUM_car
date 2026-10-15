@@ -107,7 +107,7 @@ export const cars: Car[] = [
     id: "c04", slug: "mazda-3-15-2024", brandId: "mazda", model: "3 1.5", trim: "Signature",
     price: 750_000_000, bodyStyle: "sedan", images: gallery(IMG.mazda3Sedan), isFeatured: true,
     engine: "I4 1.5L SkyActiv", powerHp: 110, torqueNm: 146, consumption: 5.9,
-    description: "Ngôn ngữ Kodo sang trọng, cảm giác lái thể thao, nội thất cao cấp phân khúc.",
+    description: "Ngôn ngữ Kodo tinh tế, cảm giác lái thể thao, nội thất chỉn chu hàng đầu phân khúc.",
   }),
   mk({
     id: "c05", slug: "kia-k3-20-2024", brandId: "kia", model: "K3 2.0", trim: "Premium",
@@ -169,7 +169,7 @@ export const cars: Car[] = [
     id: "c14", slug: "mazda-3-hatchback-2024", brandId: "mazda", model: "3 Hatchback", trim: "Premium",
     price: 820_000_000, bodyStyle: "hatchback", images: gallery(IMG.mazda3Hb),
     engine: "I4 2.0L SkyActiv", powerHp: 153, torqueNm: 200, consumption: 6.5, seats: 5, doors: 5,
-    description: "Hatchback đẹp nhất phân khúc: Kodo design, nội thất như xe sang.",
+    description: "Hatchback đẹp nhất phân khúc: Kodo design, nội thất tiện nghi hiện đại.",
   }),
   // ---- PICKUP ----
   mk({

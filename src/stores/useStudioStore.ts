@@ -47,7 +47,7 @@ export const WHEELS: WheelOption[] = [
   { id: "w-std", name: "Tiêu chuẩn 15\"", desc: "5 chấu, bạc", price: 0 },
   { id: "w-sport", name: "Thể thao 16\"", desc: "Đúc, đen mờ", price: 12_000_000 },
   { id: "w-carbon", name: "Cao cấp 17\"", desc: "Phay xước, 2 tông màu", price: 22_000_000 },
-  { id: "w-gold", name: "Mạ vàng 16\"", desc: "Điểm nhấn sang trọng", price: 18_000_000 },
+  { id: "w-gold", name: "Đa chấu 16\"", desc: "Hợp kim nhôm, 2 tông màu", price: 18_000_000 },
 ];
 
 export const INTERIORS: InteriorOption[] = [
