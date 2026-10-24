@@ -43,7 +43,7 @@ export default function Register() {
         <div className="absolute bottom-12 left-12 max-w-md">
           <p className="font-condensed text-xs uppercase tracking-[0.4em] text-champagne">Private circle</p>
           <p className="mt-4 font-display text-4xl leading-tight text-ivory" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-            Gia nhập <em className="text-gold">giới thượng lưu</em> của AURUM.
+            Gia nhập <em className="text-gold">cộng đồng yêu xe</em> của AURUM.
           </p>
         </div>
       </div>

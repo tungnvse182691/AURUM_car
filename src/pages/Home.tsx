@@ -32,7 +32,7 @@ function Hero() {
           transition={{ delay: 2.6, duration: 0.8 }}
           className="flex items-center gap-3 font-condensed text-[11px] md:text-xs font-medium uppercase leading-loose tracking-[0.3em] md:tracking-[0.45em] text-champagne"
         >
-          <span className="h-px w-10 shrink-0 bg-gold" /> Showroom ô tô hạng sang · Saigon
+          <span className="h-px w-10 shrink-0 bg-gold" /> Showroom ô tô · Saigon
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 48 }}
@@ -125,7 +125,8 @@ const PAINTS = [
 function Configurator() {
   const [paint, setPaint] = useState(PAINTS[1]);
   const [sweepKey, setSweepKey] = useState(0);
-  const price = 12100000000;
+  // Giá lăn bánh ước tính cho Vios G (530M) hiển thị trong ảnh demo
+  const price = 595_000_000;
 
   const pick = (p: (typeof PAINTS)[number]) => {
     if (p.id === paint.id) return;
@@ -150,7 +151,7 @@ function Configurator() {
               {/* spray sweep */}
               <div key={sweepKey} className="pointer-events-none absolute inset-y-0 w-1/3 animate-[spray_1.1s_ease-out_forwards] bg-gradient-to-r from-transparent via-white/35 to-transparent" />
               <div className="absolute bottom-5 left-6">
-                <p className="font-condensed text-xs uppercase tracking-[0.35em] text-champagne">Mercedes-AMG GT R</p>
+                <p className="font-condensed text-xs uppercase tracking-[0.35em] text-champagne">Toyota Vios G</p>
                 <p className="mt-1 font-display text-3xl text-ivory" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{paint.name}</p>
               </div>
             </div>
